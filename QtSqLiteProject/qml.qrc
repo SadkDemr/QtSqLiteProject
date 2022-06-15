@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Insert.qml</file>
+        <file>MainPage.qml</file>
+        <file>Settings.qml</file>
+        <file>Update.qml</file>
+    </qresource>
+</RCC>
