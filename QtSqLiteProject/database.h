@@ -38,10 +38,12 @@ private:
     void closeDataBase();
     bool createTable();
 
+
 public slots:
     bool inserIntoTable(const QVariantList &data);      // Tabloya giriş ekleme
-    bool inserIntoTable(const QString &title, const QString &date, const QString &tag, const QString &vote, const QByteArray &image);
+    bool inserIntoTable(const QString &title, const QDate &date, const QString &tag, const QString &vote, const QByteArray &image);
     bool removeRecord(const int id); // tablodan kayıtları kaldırma
+
 };
 
 #endif // DATABASE_H

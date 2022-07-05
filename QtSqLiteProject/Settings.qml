@@ -3,6 +3,7 @@ import QtQuick.Window 2.12
 import QtQuick.Dialogs 1.3
 import Qt.labs.settings 1.0
 import QtQuick.Controls 2.4
+import MyLang 1.0
 
 Item {
     id: settings
@@ -36,6 +37,7 @@ Item {
                 onAccepted: {
                     console.log("Chose font : "+font)
                     textId.font = fontDialogId.font
+                    textId1.font = fontDialogId.font
 
                 }
 
@@ -51,7 +53,7 @@ Item {
             }
             Button {
                 id: btn
-                text: qsTr("Background Color")
+                text: qsTr("Background Color") + MyTrans.emptyString
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {
                     colorDialogId.open()
@@ -60,15 +62,17 @@ Item {
 
                 }
             Button{
-                text : "Change Font"
+                text : qsTr("Change Font") + MyTrans.emptyString
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {
                     fontDialogId.open()
                 }
             }
 
+
+
 //            Settings{
-//                category: "window"
+//                category: "item"
 //                property alias x : rectId.x
 //                property alias y : rectId.y
 //                property alias width : rectId.width
@@ -94,11 +98,74 @@ Item {
 //                }
 
 
+
+        }
+
+        Image {
+               id: id_eng
+               anchors {
+                   top: parent.top
+                   right: parent.right
+                   margins: 1
+
+
+               }
+               width: 130
+               height: 100
+               source: "image/ing.png"
+
+               MouseArea{
+                   anchors.fill: parent
+                   onClicked: {
+                       MyTrans.updateLanguage(MyLang.ENG)
+                   }
+               }
+           }
+
+           Image {
+               id: id_jap
+               anchors {
+                   top: id_eng.bottom
+                   right: parent.right
+                   margins: 1
+
+
+               }
+               width: 130
+               height: 100
+               source: "image/tr.png"
+
+               MouseArea{
+                   anchors.fill: parent
+                   onClicked: {
+                       MyTrans.updateLanguage(MyLang.TR)
+                   }
+               }
+           }
+
+           Image {
+               id: id_vie
+               anchors {
+                   top: id_jap.bottom
+                   right: parent.right
+                   margins: 1
+
+
+               }
+               width: 130
+               height: 100
+               source: "image/ger.png"
+
+               MouseArea{
+                   anchors.fill: parent
+                   onClicked: {
+
+                       MyTrans.updateLanguage(MyLang.GER)
+                   }
+               }
+}
+
     }
 
 
-        }
 }
-
-
-

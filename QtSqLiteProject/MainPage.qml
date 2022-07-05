@@ -38,13 +38,36 @@ anchors.centerIn: parent
             role: "tagline"
             title: "tagline"
         }
-        TableViewColumn {
-            role: "image"
-            title: "image"
 
-        }
 
-        model: myModel
+
+//        TableViewColumn {
+//            role: "image"
+//            title: "image"
+//            delegate: imageDelegate
+
+//        }
+
+
+
+
+          model: myModel
+//        Component {
+//            id: imageDelegate
+//            Item {
+//                Image {
+//                    anchors.verticalCenter: parent.verticalCenter
+//                    anchors.horizontalCenter: parent.horizontalCenter
+//                    fillMode: Image.PreserveAspectFit
+//                    height:20
+//                    cache : true;
+//                    asynchronous: true;
+//                    source:styleData.value // !== undefined  ? styleData.value : ""
+//                }
+//            }
+//         }
+
+
 
         // Fare sol tıklamasını engellemek için TableView'da çizgileri ayarlama
         rowDelegate: Rectangle {
@@ -76,7 +99,7 @@ anchors.centerIn: parent
         id: contextMenu
 
         MenuItem {
-            text: qsTr("Sil")
+            text: qsTr("Sil") + MyTrans.emptyString
             onTriggered: {
                 /* Satırı veritabanından kaldırma niyetini netleştirecek iletişim kutusunu çağırın
                  * */
@@ -88,18 +111,28 @@ anchors.centerIn: parent
     // Veri tabanından kaldırma satırının onaylandığı iletişim kutusu
     MessageDialog {
         id: dialogDelete
-        title: qsTr("Kaydı sil")
-        text: qsTr("Girişlerin silinmesini onaylayın!!")
+        title: qsTr("Kaydı sil") + MyTrans.emptyString
+        text: qsTr("Girişlerin silinmesini onaylayın!!") + MyTrans.emptyString
         icon: StandardIcon.Warning
-        standardButtons: StandardButton.Ok | StandardButton.Cancel
+        standardButtons: StandardButton.Yes | StandardButton.No
 
 
-        onAccepted: {
-            /* ... remove the line by id, which is taken from the data model
-             * on the line number in the presentation
+        onYes: {
+            /* ... veri modelinden alınan kimliğe göre satırı kaldırın
+             *
              * */
-            database.removeRecord(myModel.getId(tableView.currentRow))
-            myModel.updateModel();
+            if(database.removeRecord(myModel.getId(tableView.currentRow))) //  if(true)
+            {
+                console.log("Kayit basariyla silindi")
+                myModel.updateModel();
+            }
+            else
+                console.log("Silinemedi");
+
+
+        }
+        onNo: {
+            console.log("Canceled")
         }
     }
 }

@@ -7,12 +7,12 @@ ListModel::ListModel(QObject *parent) :
     this->updateModel();
 }
 
-// The method for obtaining data from the model
+// Modelden veri elde etme yöntemi
 QVariant ListModel::data(const QModelIndex & index, int role) const {
 
-    // Define the column number, on the role of number
+    // Sayı rolüne göre sütun numarasını tanımlayın
     int columnId = role - Qt::UserRole - 1;
-    // Create the index using a column ID
+    // Column id kullanarak dizi oluşturma
     QModelIndex modelIndex = this->index(index.row(), columnId);
 
     return QSqlQueryModel::data(modelIndex, Qt::DisplayRole);
@@ -21,7 +21,7 @@ QVariant ListModel::data(const QModelIndex & index, int role) const {
 QHash<int, QByteArray> ListModel::roleNames() const {
 
     QHash<int, QByteArray> roles;
-    roles[IdRole] = "id";
+      roles[IdRole] = "id";
       roles[TitleRole] = "original_title";
       roles[DateRole] = "release_date";
       roles[TagRole] = "tagline";
@@ -30,14 +30,14 @@ QHash<int, QByteArray> ListModel::roleNames() const {
       return roles;
 }
 
-// The method updates the tables in the data model representation
+// Yöntem, veri modeli gösterimindeki tabloları günceller
 void ListModel::updateModel()
 {
-    // The update is performed SQL-queries to the database
+    //veritabanına SQL sorguları gerçekleştirilir
     this->setQuery("SELECT id, " TABLE_TITLE ", " TABLE_DATE ", " TABLE_TAG" , " TABLE_VOTE"," TABLE_IMAGE " FROM " TABLE);
 }
 
-// Getting the id of the row in the data view model
+// Veri görünümü modelinde satırın kimliğini alma
 int ListModel::getId(int row)
 {
     return this->data(this->index(row, 0), IdRole).toInt();

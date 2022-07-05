@@ -18,7 +18,7 @@ public:
         DateRole,                      // release_date
         TagRole,                         // tagline
         VoteRole,                        // vote_average
-        ImageRole
+        ImageRole                       //image
     };
 
     explicit ListModel(QObject *parent = 0);

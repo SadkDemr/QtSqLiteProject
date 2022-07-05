@@ -5,5 +5,11 @@
         <file>MainPage.qml</file>
         <file>Settings.qml</file>
         <file>Update.qml</file>
+        <file>translator/HelloWorld_ENG.qm</file>
+        <file>translator/HelloWorld_GER.qm</file>
+        <file>translator/HelloWorld_TR.qm</file>
+        <file>image/ing.png</file>
+        <file>image/tr.png</file>
+        <file>image/ger.png</file>
     </qresource>
 </RCC>

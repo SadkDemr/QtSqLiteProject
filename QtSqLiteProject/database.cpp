@@ -12,7 +12,7 @@ DataBase::~DataBase()
 
 void DataBase::connectToDataBase()
 {
-    if(!QFile("C:/Users/msdemir/Desktop/QTProje/QTDasalProject/" DATABASE_NAME).exists()){
+    if(!QFile("C:/Users/msdemir/Desktop/QTProje/QtSqLiteProject/" DATABASE_NAME).exists()){
         this->restoreDataBase();
     } else {
         this->openDataBase();
@@ -24,8 +24,9 @@ bool DataBase::restoreDataBase()
     if(this->openDataBase()){
         return (this->createTable()) ? true : false;
     } else {
-        qDebug() << "Failed to restore the database";
+        qDebug() << "Veritabani geri yuklenemedi";
         return false;
+
     }
     return false;
 }
@@ -34,7 +35,7 @@ bool DataBase::openDataBase()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setHostName(DATABASE_HOSTNAME);
-    db.setDatabaseName("C:/Users/msdemir/Desktop/QTProje/QTDasalProject/" DATABASE_NAME);
+    db.setDatabaseName("C:/Users/msdemir/Desktop/QTProje/QtSqLiteProject/" DATABASE_NAME);
     if(db.open()){
         return true;
     } else {
@@ -53,7 +54,7 @@ bool DataBase::createTable()
     if(!query.exec( "CREATE TABLE " TABLE " ("
                             "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                             TABLE_TITLE     " VARCHAR(255)    NOT NULL,"
-                            TABLE_DATE     " VARCHAR(255)    ,"
+                            TABLE_DATE     " DATE    ,"
                             TABLE_TAG       " VARCHAR(255)    NOT NULL,"
                             TABLE_VOTE      " DOUBLE ,"
                             TABLE_IMAGE    "BLOB"
@@ -76,9 +77,9 @@ bool DataBase::inserIntoTable(const QVariantList &data)
                                              TABLE_TAG ","
                                              TABLE_VOTE ","
                                              TABLE_IMAGE " ) "
-                  "VALUES (:Title, :Date, :Nik, :Vote)");
+                  "VALUES (:Title, :Date, :Tag, :Vote, :Image)");
     query.bindValue(":Title",      data[0].toString());
-    query.bindValue(":Date",       data[1].toString());
+    query.bindValue(":Date",       data[1].toDate());
     query.bindValue(":Tag",        data[2].toString());
     query.bindValue(":Vote",       data[3].toString());
     query.bindValue(":Image",      data[4].toByteArray());
@@ -93,8 +94,9 @@ bool DataBase::inserIntoTable(const QVariantList &data)
     return false;
 }
 
-bool DataBase::inserIntoTable(const QString &title, const QString &date, const QString &tag, const QString &vote, const QByteArray &image)
+bool DataBase::inserIntoTable(const QString &title, const QDate &date, const QString &tag, const QString &vote, const QByteArray &image)
 {
+
     QVariantList data;
     data.append(title);
     data.append(date);
