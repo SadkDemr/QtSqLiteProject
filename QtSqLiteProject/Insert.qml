@@ -2,6 +2,7 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
 import QtQuick.Dialogs 1.2
+import Qt.labs.settings 1.0
 
 
 Item {
@@ -22,15 +23,9 @@ Item {
 
             spacing: 10
 
-            Text
-            {
-
-                text: qsTr("original_title") + MyTrans.emptyString
-
-            }
+            Text{text: qsTr("original_title") + MyTrans.emptyString}
             TextField {id: original_titleField}
-            Text {
-                id: textId1
+            Text {id: textId1
                 text: qsTr("release_date") + MyTrans.emptyString
             }
             TextField { id: release_dateField}
@@ -38,25 +33,35 @@ Item {
             TextField { id: vote_averageField}
             Text {text: qsTr("tagline") + MyTrans.emptyString}
             TextField {id: taglineField}
-            Text {text: qsTr("image") + MyTrans.emptyString}
-            TextField {id: imageField}
+
+            Button{
+            text: qsTr("Image Selecet") + MyTrans.emptyString
+            onClicked: {
+            fileDialog.open()
+               }
+            }
+            FileDialog {
+                id: fileDialog
+                title: "Please choose a file"
+                folder: shortcuts.home
+                nameFilters: [ "Image files (*.jpg *.png)", "All files (*)" ]
+                onAccepted: {
+                    console.log("You chose: " + fileDialog.fileUrl)
+                }
+                onRejected: {
+                    console.log("Canceled")
+
+                }
+                Component.onCompleted: visible = false
+            }
+
+
 
             Button {
                 text: qsTr("Add") + MyTrans.emptyString
 
                 // Veritabanına yeni bir giriş yapın
                 onClicked: {
-//                                    if(database.inserIntoTable(original_titleField.text , release_dateField.text, taglineField.text, vote_averageField.text, imageField.text))
-//                                    {
-//                                        console.log("Kayit basariyla eklendi")
-//                                        myModel.updateModel() // And updates the data model with a new record
-
-
-//                                    }
-//                                    else{
-//                                        console.log("Kayit eklenemedi")
-//                                    }
-
                     dialogKayit.open()
                 }
 
@@ -68,7 +73,7 @@ Item {
                 icon: StandardIcon.Warning
                 standardButtons: StandardButton.Yes | StandardButton.No
                 onYes: {
-                    if(database.inserIntoTable(original_titleField.text , release_dateField.text, taglineField.text, vote_averageField.text, imageField.text))
+                    if(database.inserIntoTable(original_titleField.text , release_dateField.text, taglineField.text, vote_averageField.text, fileDialog.fileUrl))
                     {
                         console.log("Kayit basariyla eklendi")
                         myModel.updateModel() // And updates the data model with a new record
@@ -84,10 +89,6 @@ Item {
                 }
 
                 }
-
-
-
-
 
                 }
 

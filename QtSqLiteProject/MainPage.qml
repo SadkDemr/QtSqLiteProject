@@ -1,5 +1,6 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
+import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.1
 import QtQuick.Dialogs 1.2
 
@@ -38,34 +39,32 @@ anchors.centerIn: parent
             role: "tagline"
             title: "tagline"
         }
+        TableViewColumn {
+            role: "image"
+            title: "Image"
+            width: root.width/4
+            delegate:imageDelegate
 
+        }
 
+        Component {
+            id: imageDelegate
+            Item {
 
-//        TableViewColumn {
-//            role: "image"
-//            title: "image"
-//            delegate: imageDelegate
+                Image {
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    fillMode: Image.PreserveAspectFit
+                    height:20
+                    cache : true;
+                    asynchronous: true;
 
-//        }
+                    source: "qrc:/image/tr.png"
 
-
-
-
+                }
+            }
+         }
           model: myModel
-//        Component {
-//            id: imageDelegate
-//            Item {
-//                Image {
-//                    anchors.verticalCenter: parent.verticalCenter
-//                    anchors.horizontalCenter: parent.horizontalCenter
-//                    fillMode: Image.PreserveAspectFit
-//                    height:20
-//                    cache : true;
-//                    asynchronous: true;
-//                    source:styleData.value // !== undefined  ? styleData.value : ""
-//                }
-//            }
-//         }
 
 
 
@@ -83,7 +82,7 @@ anchors.centerIn: parent
                     tableView.focus = true
 
                     switch(mouse.button) {
-                    case Qt.RightButton:
+                    case Qt.LeftButton:
                         contextMenu.popup() // Call the context menu
                         break
                     default:
@@ -104,6 +103,13 @@ anchors.centerIn: parent
                 /* Satırı veritabanından kaldırma niyetini netleştirecek iletişim kutusunu çağırın
                  * */
                 dialogDelete.open()
+            }
+
+        }
+        MenuItem{
+            text: qsTr("Düzenle") + MyTrans.emptyString
+            onTriggered:{
+                popup.open()
             }
         }
     }
@@ -135,4 +141,117 @@ anchors.centerIn: parent
             console.log("Canceled")
         }
     }
+
+    Popup{
+        id:popup
+        background: Rectangle{
+            implicitHeight: 10
+            implicitWidth: 2
+            border.color: "green"
+        }
+
+        contentItem: RowLayout{
+            id: rowLayout
+            Text{ text: qsTr("original_title") + MyTrans.emptyString
+            }
+            TextField {id: original_titleField}
+            Text {
+                id: textId1
+                text: qsTr("release_date") + MyTrans.emptyString
+            }
+            TextField { id: release_dateField}
+            Text {text: qsTr(" vote_average") + MyTrans.emptyString}
+            TextField { id: vote_averageField}
+            Text {text: qsTr("tagline") + MyTrans.emptyString}
+            TextField {id: taglineField}
+
+            Button{
+            text: qsTr("Image Selecet") + MyTrans.emptyString
+            onClicked: {
+            fileDialog.open()
+               }
+            }
+            FileDialog {
+                id: fileDialog
+                title: "Please choose a file"
+                folder: shortcuts.home
+                nameFilters: [ "Image files (*.jpg *.png)", "All files (*)" ]
+                onAccepted: {
+                    console.log("You chose: " + fileDialog.fileUrl)
+                }
+                onRejected: {
+                    console.log("Canceled")
+
+                }
+                Component.onCompleted: visible = false
+            }
+
+            Button{
+                text: qsTr("Düzenle") + MyTrans.emptyString
+
+                onClicked: {
+
+                       dialogDuzenle.open()
+
+                }
+            }
+            MessageDialog{
+                id: dialogDuzenle
+                title: qsTr("Kayıt") + MyTrans.emptyString
+                text: qsTr("Kayıt İşlemi Tamamlansın mı?") + MyTrans.emptyString
+                icon: StandardIcon.Warning
+                standardButtons: StandardButton.Yes | StandardButton.No
+                onYes: {
+                    //database.removeRecord(myModel.getId(tableView.currentRow)
+                    //current_id = myModel.getId(tableView.currentRow)
+
+                    // fonksiyona giden butun data lara debug at
+                        if(database.update((myModel.getId(tableView.currentRow)),original_titleField.text , release_dateField.text, taglineField.text, vote_averageField.text, fileDialog.fileUrl))
+                        {
+
+                            console.log("Kayit basariyla düzenlendi")
+                            myModel.updateModel()
+
+                        }
+                    else{
+                        console.log("Kayit düzenlenmedi")
+                    }
+                   }
+
+                onNo: {
+                    console.log("Canceled")
+                }
+
+                }
+            Button {
+                   text: qsTr("Kapat") + MyTrans.emptyString
+                   // Respond to the signal here.
+                   onClicked: popup.close();
+               }
+
+        }
+
+
+
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

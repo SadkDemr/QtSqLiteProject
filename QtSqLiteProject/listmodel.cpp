@@ -1,10 +1,12 @@
 #include "listmodel.h"
 #include "database.h"
+#include <QLabel>
 
 ListModel::ListModel(QObject *parent) :
     QSqlQueryModel(parent)
 {
     this->updateModel();
+
 }
 
 // Modelden veri elde etme yöntemi
@@ -37,8 +39,29 @@ void ListModel::updateModel()
     this->setQuery("SELECT id, " TABLE_TITLE ", " TABLE_DATE ", " TABLE_TAG" , " TABLE_VOTE"," TABLE_IMAGE " FROM " TABLE);
 }
 
+void ListModel::updateData()
+{
+     this->setQuery("UPDATE " TABLE " ( " TABLE_TITLE ", "
+                    TABLE_DATE ", "
+                    TABLE_TAG ","
+                    TABLE_VOTE ","
+                    TABLE_IMAGE " ) "
+                    "WHERE id= :ID ;");
+}
+
 // Veri görünümü modelinde satırın kimliğini alma
 int ListModel::getId(int row)
 {
     return this->data(this->index(row, 0), IdRole).toInt();
 }
+
+
+
+
+
+
+
+
+
+
+

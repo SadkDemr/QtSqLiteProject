@@ -15,19 +15,7 @@ Item {
 
         Column {
             spacing: 20
-            anchors.centerIn: parent
-
-            ColorDialog {
-                id: colorDialogId
-                title: "Please choose a color"
-                onAccepted: {
-                    console.log("The new color is : "+ color)
-                    rectId.color = color
-                }
-                onRejected: {
-                    console.log("Canceled")
-                }
-            }
+            anchors.centerIn: parent          
 
             FontDialog{
                 id : fontDialogId
@@ -60,6 +48,20 @@ Item {
 
                 }
 
+
+                ColorDialog {
+                    id: colorDialogId
+                    title: "Please choose a color"
+                    onAccepted: {
+                        console.log("The new color is : "+ color)
+                        rectId.color = color
+
+                    }
+                    onRejected: {
+                        console.log("Canceled")
+                    }
+                }
+
                 }
             Button{
                 text : qsTr("Change Font") + MyTrans.emptyString
@@ -71,31 +73,6 @@ Item {
 
 
 
-//            Settings{
-//                category: "item"
-//                property alias x : rectId.x
-//                property alias y : rectId.y
-//                property alias width : rectId.width
-//                property alias height : rectId.height
-//            }
-
-//            Settings{
-//                category: "colors"
-//                property alias rectColor : rectId.color
-//            }
-//            Settings{
-//                category: "window"
-//                property alias x : rectId.x
-//                property alias y : rectId.y
-//                property alias width : rectId.width
-//                property alias height : rectId.height
-//           }
-
-//            Settings {
-//                    category: "text"
-//                    property alias fontSize: textId.textFormatChanged()
-//                    // ...
-//                }
 
 
 
@@ -106,7 +83,7 @@ Item {
                anchors {
                    top: parent.top
                    right: parent.right
-                   margins: 1
+                   margins: 5
 
 
                }
@@ -127,7 +104,7 @@ Item {
                anchors {
                    top: id_eng.bottom
                    right: parent.right
-                   margins: 1
+                   margins: 5
 
 
                }
@@ -148,7 +125,7 @@ Item {
                anchors {
                    top: id_jap.bottom
                    right: parent.right
-                   margins: 1
+                   margins: 5
 
 
                }
@@ -166,6 +143,36 @@ Item {
 }
 
     }
+
+//    Settings{
+//        id: setting1
+//        category: "item"
+//        property alias x : rectId.x
+//        property alias y : rectId.y
+//        property alias width : rectId.width
+//        property alias height : rectId.height
+//    }
+
+//    Settings{
+//        id: setting2
+//        category: "colors"
+//        property alias rectColor : rectId.color
+//    }
+//    Settings{
+//        id: setting3
+//        category: "window"
+//        property alias x : rectId.x
+//        property alias y : rectId.y
+//        property alias width : rectId.width
+//        property alias height : rectId.height
+//   }
+
+//    Settings {
+//        id: setting4
+//            category: "text"
+//            property alias fontSize: textId.textFormatChanged()
+//            // ...
+//        }
 
 
 }

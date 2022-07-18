@@ -7,42 +7,37 @@ import QtQuick.Controls.Styles 1.4
 
 
 Item {
-//    ListModel {
-//        id: myListModel;
-//        ListElement {
-//            //: Capital city of Finland
-//            name: QT_TR_NOOP("Hello");
-//            }
-//        }
+    Rectangle {
+        color: "white"
+        width: 200
+        height: 100
 
-//    ListView {
-//        model: myModel
-//        id: someListView
-//        delegate: ItemDelegate   {
-//            text: Name
-//            Image {
-//                id: image
+        Text {
+            text: "?"
+            anchors.horizontalCenter: parent.horizontalCenter
+            function findGreetings() {
+                var db = openDatabaseSync("movies.sqlite", "1.0", "The Example QML SQL!", 1000000);
 
-//                source: ???
-//            }
-//        }
-//    }
+                db.transaction(
+                    function(tx) {
+//                        // Create the database if it doesn't already exist
+//                        tx.executeSql('CREATE TABLE IF NOT EXISTS Greeting(salutation TEXT, salutee TEXT)');
 
-//    ListView{
-//        id:view
-//        delegate:
-//    }
+//                        // Add (another) greeting row
+//                        tx.executeSql('INSERT INTO Greeting VALUES(?, ?)', [ 'hello', 'world' ]);
 
+                        // Show all added greetings
+                        var rs = tx.executeSql('SELECT * FROM image');
 
-
-//    Text {
-//        anchors.centerIn: parent
-//        text: qsTr(myListModel.get(0).name); // get the translation of the name property in element 0
-//        }
-
-
-
-//    Text {
-//        text: qsTr("File %1 of %2").arg(counter).arg(total)
-//    }
+                        var r = ""
+                        for (var i = 0; i < rs.rows.length; i++) {
+                            r += rs.rows.item(i).salutation + ", " + rs.rows.item(i).salutee + "\n"
+                        }
+                        text = r
+                    }
+                )
+            }
+            Component.onCompleted: findGreetings()
+        }
+    }
 }

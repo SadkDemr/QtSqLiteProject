@@ -37,7 +37,9 @@ signals:
 
 public slots:
     void updateModel();
+    void updateData();
     int getId(int row);
+
 };
 
 #endif // LISTMODEL_H

@@ -3,6 +3,10 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QTranslator>
+#include <QSettings>
+#include <QVariant>
+#include <QColor>
+#include <QLabel>
 
 #include "database.h"
 #include "listmodel.h"
@@ -13,11 +17,19 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
+
+
     qmlRegisterType<MyLang>("MyLang", 1, 0, "MyLang");
 
       MyTranslator mTrans(&app);
       QQmlApplicationEngine engine;
       engine.rootContext()->setContextProperty("MyTrans",(QObject*)&mTrans);
+
+      QSettings settings("MySoft", "Star Runner");
+      QColor models = settings.value("DataPump/bgcolor").value<QColor>();
+
+
+      engine.rootContext()->setContextProperty("setting", models);
 
       DataBase database;
       database.connectToDataBase();
@@ -28,6 +40,8 @@ int main(int argc, char *argv[])
       engine.rootContext()->setContextProperty("database", &database);
 
       engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+
+
 
       return app.exec();
 }

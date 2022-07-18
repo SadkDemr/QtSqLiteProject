@@ -1,5 +1,4 @@
 #include "ufile.h"
-#include "database.h"
 #include <QDir>
 #include <QUrl>
 
@@ -36,7 +35,7 @@ QString UFile::base64() const
 void UFile::readFile(const QString &filePath){
     if(!filePath.isEmpty()){
         QString _fp = filePath;
-        if(_fp.startsWith("file:C:/Users/msdemir/Desktop/QTProje/QtSqLiteProject/movies.sqlite"))
+        if(_fp.startsWith("file:///"))
             _fp = QUrl(filePath).toLocalFile();
         if(!_fp.isEmpty()){
             _fp = QDir::toNativeSeparators(_fp);

@@ -10,11 +10,13 @@
 #include <QDate>
 #include <QDebug>
 #include <QImage>
+#include <QFileDialog>
 
 #define DATABASE_HOSTNAME   "moviesDataBase"
 #define DATABASE_NAME       "movies.sqlite"
 
-#define TABLE                   "image"
+#define TABLE                   "movies_image" // table ismi degistirilmeli
+#define TABLE_ID                "id"
 #define TABLE_TITLE             "original_title"
 #define TABLE_DATE             "release_date"
 #define TABLE_TAG              "tagline"
@@ -40,9 +42,13 @@ private:
 
 
 public slots:
-    bool inserIntoTable(const QVariantList &data);      // Tabloya giriş ekleme
-    bool inserIntoTable(const QString &title, const QDate &date, const QString &tag, const QString &vote, const QByteArray &image);
+    //void getUploadFile();
+
+    bool inserIntoTable(const QString &title, const QDate &date, const QString &tag, const QString &vote, const QString &image);
+    bool update(const int id,const QString &title, const QDate &date, const QString &tag, const QString &vote, const QString &image);
     bool removeRecord(const int id); // tablodan kayıtları kaldırma
+
+
 
 };
 

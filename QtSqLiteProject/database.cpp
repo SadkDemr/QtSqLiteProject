@@ -1,5 +1,5 @@
 #include "database.h"
-
+#include <QIODevice>
 DataBase::DataBase(QObject *parent) : QObject(parent)
 {
 
@@ -69,20 +69,34 @@ bool DataBase::createTable()
     return false;
 }
 
-bool DataBase::inserIntoTable(const QVariantList &data)
+
+bool DataBase::inserIntoTable(const QString &title, const QDate &date, const QString &tag, const QString &vote, const QString &image)
 {
+
+
     QSqlQuery query;
-    query.prepare("INSERT INTO " TABLE " ( " TABLE_TITLE ", "
-                                             TABLE_DATE ", "
-                                             TABLE_TAG ","
-                                             TABLE_VOTE ","
-                                             TABLE_IMAGE " ) "
-                  "VALUES (:Title, :Date, :Tag, :Vote, :Image)");
-    query.bindValue(":Title",      data[0].toString());
-    query.bindValue(":Date",       data[1].toDate());
-    query.bindValue(":Tag",        data[2].toString());
-    query.bindValue(":Vote",       data[3].toString());
-    query.bindValue(":Image",      data[4].toByteArray());
+    query.prepare(
+                "INSERT INTO " TABLE
+                " ("
+                TABLE_TITLE ", "
+                TABLE_DATE ", "
+                TABLE_TAG ","
+                TABLE_VOTE ","
+                TABLE_IMAGE ") "
+                "VALUES (:Title, :Date, :Tag, :Vote, :Image)");
+
+    QString temp = image;//file:///C:/Users/msdemir/Downloads/2548a.jpg
+    temp.remove(0,8);
+    qDebug() << temp;
+    QFile file(temp);
+        file.open(QIODevice::ReadOnly);
+        QByteArray bytes = file.readAll();
+
+    query.bindValue(":Title",      title);
+    query.bindValue(":Date",      date);
+    query.bindValue(":Tag",        tag);
+    query.bindValue(":Vote",       vote);
+    query.bindValue(":Image",     bytes , QSql::In | QSql::Binary);
 
     if(!query.exec()){
         qDebug() << "error insert into " << TABLE;
@@ -92,26 +106,70 @@ bool DataBase::inserIntoTable(const QVariantList &data)
         return true;
     }
     return false;
-}
 
-bool DataBase::inserIntoTable(const QString &title, const QDate &date, const QString &tag, const QString &vote, const QByteArray &image)
+}
+//((myModel.getId(tableView.currentRow)), original_titleField.text , release_dateField.text, taglineField.text, vote_averageField.text, fileDialog.fileUrl)
+bool DataBase::update(const int id,const QString &title, const QDate &date, const QString &tag, const QString &vote, const QString &image) // there are not exists params
 {
+    //fonksiyona gelen tum datalara debug at
 
-    QVariantList data;
-    data.append(title);
-    data.append(date);
-    data.append(tag);
-    data.append(vote);
-    data.append(image);
+    qDebug() << "update() running..";
+    QSqlQuery query;
+    qDebug() << "title : " << title;
+    qDebug()<< "date : "<< date;
+    qDebug()<< "tag : "<< tag;
+    qDebug()<< "vote : "<< vote;
+    qDebug() << "id : " << id;
 
-    if(inserIntoTable(data))
-        return true;
-    else
+    query.prepare("UPDATE movies_image SET original_title=:Title, release_date=:Date, tagline=:Tag, vote_average=:Vote, image=:Image   WHERE id = :ID");
+
+//    query.prepare("UPDATE " TABLE
+//                  " SET ("
+//                      TABLE_TITLE " =:Title, "
+//                      TABLE_DATE "=:Date, "
+//                     TABLE_TAG "=:Tag,"
+//                      TABLE_VOTE " =:Vote,"
+//                     TABLE_IMAGE "=:Image ) "
+//                  "WHERE id = :ID"  ";");
+    QString temp = image;//file:///C:/Users/msdemir/Downloads/2548a.jpg
+    temp.remove(0,8);
+    qDebug() << temp;
+    QFile file(temp);
+    file.open(QIODevice::ReadOnly);
+    QByteArray bytes = file.readAll();
+
+    query.bindValue(":ID",          id);
+    query.bindValue(":Title",      title);
+    query.bindValue(":Date",       date);
+    query.bindValue(":Tag",       tag);
+    query.bindValue(":Vote",       vote);
+    query.bindValue(":Image",      bytes, QSql::In | QSql::Binary);
+
+
+
+    //query sorgusunun son halini ekrana string yaz
+
+    qDebug() << "query prepared ! ";
+    qDebug() << "query prepared ! "<< query.exec();
+
+
+
+    if(!query.exec()){
+        qDebug() << "error update " << TABLE;
+        qDebug() << "lastError : " << query.lastError().text();
         return false;
+    } else {
+        return true;
+    }
+    return false;
 }
+
 
 bool DataBase::removeRecord(const int id)
 {
+
+    // id degerine debug at
+
     QSqlQuery query;
 
     query.prepare("DELETE FROM " TABLE " WHERE id= :ID ;");
