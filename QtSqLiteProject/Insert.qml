@@ -7,9 +7,12 @@ import Qt.labs.settings 1.0
 
 Item {
     anchors.centerIn: parent
+
+
+
     Rectangle{
         id:insert
-        color: "grey"
+        color: mySettings.sampleColor
         height: parent.height
         width: parent.width
         RowLayout {

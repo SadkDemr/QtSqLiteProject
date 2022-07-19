@@ -5,18 +5,25 @@ import Qt.labs.settings 1.0
 import QtQuick.Controls 2.4
 import MyLang 1.0
 
+
 Item {
     id: settings
+        Settings {
+            id: setting4
+                category: "General"
+                property alias fontSize: textId.font
+
+            }
 
     Rectangle {
         id : rectId
         anchors.fill: parent
-        color: "grey"
+        color: mySettings.sampleColor
 
         Column {
             spacing: 20
             anchors.centerIn: parent          
-
+            //font tipini ve büyüklüğünü değiştirmek için kullanılır
             FontDialog{
                 id : fontDialogId
                 title: "Choose Font"
@@ -25,7 +32,8 @@ Item {
                 onAccepted: {
                     console.log("Chose font : "+font)
                     textId.font = fontDialogId.font
-                    textId1.font = fontDialogId.font
+                    mySettings.setfontType(fontDialogId.font);
+                    console.log("New font : "+ mySettings.fontType)
 
                 }
 
@@ -36,7 +44,9 @@ Item {
 
             Text {
                 id : textId
-                text : "Hello World"
+                text : "Merhaba Dünya"
+                font:Qt.font({ family: "Arial", pointSize: 24, weight: Font.Normal })
+                //font.pointSize: mySettings.fontSize
                 anchors.horizontalCenter: parent.horizontalCenter
             }
             Button {
@@ -48,13 +58,16 @@ Item {
 
                 }
 
-
+               //arka plan rengini değiştirmek için kullanılır.
                 ColorDialog {
                     id: colorDialogId
                     title: "Please choose a color"
                     onAccepted: {
                         console.log("The new color is : "+ color)
                         rectId.color = color
+                        mySettings.setSampleColor(color);
+                        console.log("Yeni renk : "+ mySettings.sampleColor)
+
 
                     }
                     onRejected: {
@@ -64,7 +77,7 @@ Item {
 
                 }
             Button{
-                text : qsTr("Change Font") + MyTrans.emptyString
+                text : qsTr("Font Değiştir") + MyTrans.emptyString
                 anchors.horizontalCenter: parent.horizontalCenter
                 onClicked: {
                     fontDialogId.open()
@@ -77,7 +90,7 @@ Item {
 
 
         }
-
+       //Qt linguist yapısını qml bağlantısı buradadır.
         Image {
                id: id_eng
                anchors {
@@ -143,36 +156,6 @@ Item {
 }
 
     }
-
-//    Settings{
-//        id: setting1
-//        category: "item"
-//        property alias x : rectId.x
-//        property alias y : rectId.y
-//        property alias width : rectId.width
-//        property alias height : rectId.height
-//    }
-
-//    Settings{
-//        id: setting2
-//        category: "colors"
-//        property alias rectColor : rectId.color
-//    }
-//    Settings{
-//        id: setting3
-//        category: "window"
-//        property alias x : rectId.x
-//        property alias y : rectId.y
-//        property alias width : rectId.width
-//        property alias height : rectId.height
-//   }
-
-//    Settings {
-//        id: setting4
-//            category: "text"
-//            property alias fontSize: textId.textFormatChanged()
-//            // ...
-//        }
 
 
 }

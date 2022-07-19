@@ -59,7 +59,7 @@ anchors.centerIn: parent
                     cache : true;
                     asynchronous: true;
 
-                    source: "qrc:/image/tr.png"
+                    source: "image"
 
                 }
             }

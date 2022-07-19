@@ -6,15 +6,7 @@ import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.1
 import QtQuick.Controls.Universal 2.12
 Item {
-    id: name
 
-    UFile{
-        id: uifile
-        path : "C:/icon.ico"
-    }
-    Image {
-        source: uifile.base64.length > 0 ? "data:image/png;base64," + uifile.base64: ""
-    }
 }
 //Item {
 

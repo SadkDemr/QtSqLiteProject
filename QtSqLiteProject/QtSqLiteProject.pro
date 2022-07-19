@@ -7,7 +7,8 @@ QT += qml quick widgets sql
 SOURCES += \
         database.cpp \
         listmodel.cpp \
-        main.cpp
+        main.cpp \
+        mysamplesettings.cpp
 
 RESOURCES += qml.qrc
 
@@ -37,4 +38,5 @@ HEADERS += \
     MyLang.h \
     MyTranslator.h \
     database.h \
-    listmodel.h
+    listmodel.h \
+    mysamplesettings.h
