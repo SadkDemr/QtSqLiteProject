@@ -1,5 +1,7 @@
 #include "database.h"
 #include <QIODevice>
+#include <QSqlField>
+#include <QSqlDriver>
 DataBase::DataBase(QObject *parent) : QObject(parent)
 {
 
@@ -75,6 +77,7 @@ bool DataBase::inserIntoTable(const QString &title, const QDate &date, const QSt
 
 
     QSqlQuery query;
+
     query.prepare(
                 "INSERT INTO " TABLE
                 " ("
@@ -85,18 +88,77 @@ bool DataBase::inserIntoTable(const QString &title, const QDate &date, const QSt
                 TABLE_IMAGE ") "
                 "VALUES (:Title, :Date, :Tag, :Vote, :Image)");
 
+
+    QString filePath = image;
+    QFileInfo info(filePath) ;
+    QString filse = info.fileName();
+    qDebug()<< filePath;
+
+
     QString temp = image;//file:///C:/Users/msdemir/Downloads/2548a.jpg
     temp.remove(0,8);
-    qDebug() << temp;
     QFile file(temp);
-        file.open(QIODevice::ReadOnly);
-        QByteArray bytes = file.readAll();
+    QString path = "C:/Users/msdemir/Desktop/QTProje/QtSqLiteProject/movies_img/" + filse ;
+    file.copy(path);
+    qDebug()<< path;
+
+
+    //QFile::copy("C:/Users/msdemir/Desktop/QTProje/QtSqLiteProject/image/exit.jpg", "C:/Users/msdemir/Desktop/QTProje/QtSqLiteProject/image/exits.jpg");
+
+
+//    temp.remove(0,8);
+//    qDebug() << temp;
+//    QFile file(temp);
+//    file.open(QIODevice::ReadOnly);
+//    QByteArray bytes = file.readAll();
 
     query.bindValue(":Title",      title);
     query.bindValue(":Date",      date);
     query.bindValue(":Tag",        tag);
     query.bindValue(":Vote",       vote);
-    query.bindValue(":Image",     bytes , QSql::In | QSql::Binary);
+    query.bindValue(":Image",     path , QSql::In | QSql::Binary);
+
+//    QString sql = query.executedQuery();
+//    int nbBindValues = query.boundValues().size();
+//    for(int i = 0, j = 0; j < nbBindValues;)
+//      {
+//          int s = sql.indexOf(QLatin1Char('\''), i);
+//          i = sql.indexOf(QLatin1Char('?'), i);
+//          if (i < 1)
+//          {
+//              break;
+//          }
+
+//          if(s < i && s > 0)
+//          {
+//              i = sql.indexOf(QLatin1Char('\''), s + 1) + 1;
+//              if(i < 2)
+//              {
+//                  break;
+//              }
+//          }
+//          else
+//          {
+//              const QVariant &var = query.boundValue(j);
+//              QSqlField field(QLatin1String(""), var.type());
+//              if (var.isNull())
+//              {
+//                  field.clear();
+//              }
+//              else
+//              {
+//                  field.setValue(var);
+//              }
+//              QString formatV = query.driver()->formatValue(field);
+//              sql.replace(i, 1, formatV);
+//              i += formatV.length();
+//              ++j;
+//          }
+//      }
+
+
+
+
 
     if(!query.exec()){
         qDebug() << "error insert into " << TABLE;
@@ -105,7 +167,9 @@ bool DataBase::inserIntoTable(const QString &title, const QDate &date, const QSt
     } else {
         return true;
     }
+
     return false;
+
 
 }
 //((myModel.getId(tableView.currentRow)), original_titleField.text , release_dateField.text, taglineField.text, vote_averageField.text, fileDialog.fileUrl)
@@ -123,6 +187,19 @@ bool DataBase::update(const int id,const QString &title, const QDate &date, cons
 
     query.prepare("UPDATE movies_image SET original_title=:Title, release_date=:Date, tagline=:Tag, vote_average=:Vote, image=:Image   WHERE id = :ID");
 
+    QString filePath = image;
+    QFileInfo info(filePath);
+    QString filse = info.fileName();
+    qDebug()<< filePath;
+
+
+    QString temp = image;//file:///C:/Users/msdemir/Downloads/2548a.jpg
+    temp.remove(0,8);
+    QFile file(temp);
+    QString path = "C:/Users/msdemir/Desktop/QTProje/QtSqLiteProject/movies_img/" + filse ;
+    file.copy(path);
+    qDebug()<< path;
+
 //    query.prepare("UPDATE " TABLE
 //                  " SET ("
 //                      TABLE_TITLE " =:Title, "
@@ -131,19 +208,19 @@ bool DataBase::update(const int id,const QString &title, const QDate &date, cons
 //                      TABLE_VOTE " =:Vote,"
 //                     TABLE_IMAGE "=:Image ) "
 //                  "WHERE id = :ID"  ";");
-    QString temp = image;//file:///C:/Users/msdemir/Downloads/2548a.jpg
-    temp.remove(0,8);
-    qDebug() << temp;
-    QFile file(temp);
-    file.open(QIODevice::ReadOnly);
-    QByteArray bytes = file.readAll();
+//    QString temp = image;//file:///C:/Users/msdemir/Downloads/2548a.jpg
+//    temp.remove(0,8);
+//    qDebug() << temp;
+//    QFile file(temp);
+//    file.open(QIODevice::ReadOnly);
+//    QByteArray bytes = file.readAll();
 
     query.bindValue(":ID",          id);
     query.bindValue(":Title",      title);
     query.bindValue(":Date",       date);
     query.bindValue(":Tag",       tag);
     query.bindValue(":Vote",       vote);
-    query.bindValue(":Image",      bytes, QSql::In | QSql::Binary);
+    query.bindValue(":Image",      path, QSql::In | QSql::Binary);
 
 
 

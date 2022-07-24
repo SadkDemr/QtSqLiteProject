@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QSqlQueryModel>
+#include <QBuffer>
 
 class ListModel : public QSqlQueryModel
 {
@@ -31,7 +32,7 @@ protected:
      * QAbstractItemModel temel sınıfının wild'larında kullanılan yöntem,
      * QSqlQueryModel sınıfını miras alan
      * */
-    QHash<int, QByteArray> roleNames() const;
+     QHash<int, QByteArray> roleNames() const;
 
 signals:
 
@@ -39,7 +40,6 @@ public slots:
     void updateModel();
     void updateData();
     int getId(int row);
-
 };
 
 #endif // LISTMODEL_H

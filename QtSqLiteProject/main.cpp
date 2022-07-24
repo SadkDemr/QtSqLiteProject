@@ -24,25 +24,22 @@ int main(int argc, char *argv[])
     QSettings settings("DasalGCS", "org.dasal");
     MySampleSettings* mSettings = new MySampleSettings();
 
+    MyTranslator mTrans(&app);
+    QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("MyTrans",(QObject*)&mTrans);
+    DataBase database;
+    database.connectToDataBase();
+    qmlRegisterType<MyLang>("MyLang", 1, 0, "MyLang");
+
+    ListModel *model = new ListModel();
+
+    engine.rootContext()->setContextProperty("myModel", model);
+    engine.rootContext()->setContextProperty("database", &database);
+    engine.rootContext()->setContextProperty("mySettings", mSettings);
+
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
 
 
-      MyTranslator mTrans(&app);
-      QQmlApplicationEngine engine;
-      engine.rootContext()->setContextProperty("MyTrans",(QObject*)&mTrans);
-      DataBase database;
-      database.connectToDataBase();
-      qmlRegisterType<MyLang>("MyLang", 1, 0, "MyLang");
-
-      ListModel *model = new ListModel();
-
-      engine.rootContext()->setContextProperty("myModel", model);
-      engine.rootContext()->setContextProperty("database", &database);
-      engine.rootContext()->setContextProperty("mySettings", mSettings);
-
-      engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-
-
-
-      return app.exec();
+    return app.exec();
 }

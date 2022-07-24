@@ -36,7 +36,18 @@ QHash<int, QByteArray> ListModel::roleNames() const {
 void ListModel::updateModel()
 {
     //veritabanına SQL sorguları gerçekleştirilir
-    this->setQuery("SELECT id, " TABLE_TITLE ", " TABLE_DATE ", " TABLE_TAG" , " TABLE_VOTE"," TABLE_IMAGE " FROM " TABLE);
+   this->setQuery("SELECT id, " TABLE_TITLE ", " TABLE_DATE ", " TABLE_TAG" , " TABLE_VOTE"," TABLE_IMAGE " FROM " TABLE);
+//    qDebug()<<"Image Show";
+//    QByteArray outByteArray =TABLE_IMAGE ;
+//        QPixmap outPixmap = QPixmap();
+//        outPixmap.loadFromData( outByteArray );
+//   qDebug()<< outByteArray;
+
+//        // Display image
+//        QLabel myLabel;
+//        myLabel.setPixmap( outPixmap );
+//        myLabel.show();
+//    qDebug()<< outPixmap;
 }
 
 void ListModel::updateData()
@@ -54,6 +65,11 @@ int ListModel::getId(int row)
 {
     return this->data(this->index(row, 0), IdRole).toInt();
 }
+
+
+
+
+
 
 
 
