@@ -22,24 +22,37 @@ public:
         ImageRole                       //image
     };
 
+
+
     explicit ListModel(QObject *parent = 0);
+
+
 
     // Verileri döndürecek yöntemi geçersiz kılmak
     QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
+
 
 protected:
     /*
      * QAbstractItemModel temel sınıfının wild'larında kullanılan yöntem,
      * QSqlQueryModel sınıfını miras alan
      * */
-     QHash<int, QByteArray> roleNames() const;
+    QHash<int, QByteArray> roleNames() const;
 
 signals:
+
 
 public slots:
     void updateModel();
     void updateData();
     int getId(int row);
+    QString getTitle(int row);
+    QString getTag(int row);
+    QString getDate(int row);
+    int getVote(int row);
+
+
+
 };
 
 #endif // LISTMODEL_H

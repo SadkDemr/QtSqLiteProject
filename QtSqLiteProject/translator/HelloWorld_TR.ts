@@ -6,7 +6,7 @@
     <message>
         <location filename="../Insert.qml" line="28"/>
         <source>original_title</source>
-        <translation>fiml_adi</translation>
+        <translation>film_ismi</translation>
     </message>
     <message>
         <location filename="../Insert.qml" line="34"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="../Insert.qml" line="45"/>
         <source>Add</source>
-        <translation>Ekle</translation>
+        <translation>Ekleme</translation>
     </message>
     <message>
         <location filename="../Insert.qml" line="66"/>

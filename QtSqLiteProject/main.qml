@@ -6,8 +6,8 @@ import Qt.labs.settings 1.0
 import MyLang 1.0
 
 ApplicationWindow {
-    width: 1700
-    height: 1000
+    width: maximumWidth
+    height: maximumHeight
     visible: true
     title: qsTr("Sql") + MyTrans.emptyString
     id: root
@@ -15,6 +15,7 @@ ApplicationWindow {
     menuBar: TabBar{
         TabButton {
             text : qsTr("MainPage") + MyTrans.emptyString
+            height: 50
             onClicked: {
                 mStackId.pop()
                 mStackId.push("qrc:/MainPage.qml")
@@ -23,6 +24,7 @@ ApplicationWindow {
         }
         TabButton {
             text : qsTr("Insert") + MyTrans.emptyString
+            height: 50
             onClicked: {
                 mStackId.pop()
                 mStackId.push("qrc:/Insert.qml")
@@ -33,6 +35,7 @@ ApplicationWindow {
 
         TabButton {
             text : qsTr("Settings") + MyTrans.emptyString
+            height: 50
             onClicked: {
                 mStackId.pop()
                 mStackId.push("qrc:/Settings.qml")
@@ -42,6 +45,7 @@ ApplicationWindow {
 
         TabButton {
             text : qsTr("Deneme") + MyTrans.emptyString
+            height: 50
             onClicked: {
                 mStackId.pop()
                 mStackId.push("qrc:/Deneme.qml")
@@ -56,6 +60,7 @@ ApplicationWindow {
                 duration: 200
             }
             text : qsTr("Quit") + MyTrans.emptyString
+            height: 50
             onClicked: Qt.quit()
         }
 

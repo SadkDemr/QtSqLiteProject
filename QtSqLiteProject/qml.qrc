@@ -11,5 +11,6 @@
         <file>image/tr.png</file>
         <file>image/ger.png</file>
         <file>Deneme.qml</file>
+        <file>image/dasal.jpg</file>
     </qresource>
 </RCC>

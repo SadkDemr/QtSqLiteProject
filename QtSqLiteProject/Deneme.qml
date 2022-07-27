@@ -1,26 +1,76 @@
-import QtQuick 2.12
-import QtQuick 2.0
-import QtQuick.Window 2.12
-import QtQuick.Dialogs 1.3
-import Qt.labs.settings 1.0
-import QtQuick.Controls 2.4
-import QtQuick.Layouts 1.1
-import QtQuick.Controls.Universal 2.12
-import QtQuick 2.3
+import QtQuick 2.2
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.4
-import QtQuick.Controls.Styles 1.4
-
 
 ApplicationWindow {
     id: window
-    width: 320
-    height: 260
     visible: true
-    property var yearss
-    property var monthss
-    property var days
-    property var date
+    title: "Table View Example"
+
+    TableView {
+        y: 70
+        width: 500
+
+        TableViewColumn {
+            role: "title"
+            title: "Title"
+            width: 100
+        }
+        TableViewColumn {
+            role: "author"
+            title: "Author"
+            width: 100
+        }
+
+        TableViewColumn{
+            width: 300
+            delegate: Text {
+                text: model.title + " "  + model.author
+                font.family: "Courier New"
+                font.pixelSize: 18
+                color: "red"
+            }
+        }
+
+        onClicked: {
+            leftText.text = libraryModel.get(row).title + " " + libraryModel.get(row).author;
+            centerText.text = libraryModel.get(row).title;
+            rightText.text = libraryModel.get(row).author;
+        }
+
+        model: libraryModel
+
+        ListModel {
+            id: libraryModel
+            ListElement {
+                title: "A Masterpiece"
+                author: "Gabriel"
+            }
+            ListElement {
+                title: "Brilliance"
+                author: "Jens"
+            }
+            ListElement {
+                title: "Outstanding"
+                author: "Frederik"
+            }
+        }
+    }
+
+    TextField {
+        id:  leftText
+    }
+
+    TextField {
+        id:  centerText
+        anchors.left: leftText.right
+    }
+
+    TextField {
+        id:  rightText
+        anchors.left: centerText.right
+    }
+}
 
 
 
@@ -43,9 +93,6 @@ ApplicationWindow {
 
 
 
-
-
-}
 
 
 

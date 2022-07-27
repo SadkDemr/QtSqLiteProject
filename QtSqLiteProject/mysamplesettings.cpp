@@ -44,19 +44,26 @@ QString MySampleSettings::fontType()
     qDebug() << "font değişti";
     QSettings settings("DasalGCS", "org.dasal");
     settings.beginGroup("MyCustomColors");
-    QFont font = settings.value("fontType").value<QString>();
+    QString fontTyp = settings.value("fontType").value<QString>();
+    qDebug()<<"Font family"<<fontTyp;
     settings.endGroup();
-    return font.family();
+    return fontTyp;
 }
 
-QString MySampleSettings::fontSize()
+int MySampleSettings::fontSize()
 {
+    qDebug() << "font değişti";
     QSettings settings("DasalGCS", "org.dasal");
     settings.beginGroup("MyCustomColors");
-    QColor color = settings.value("fontSize").value<QString>();
+    int fontSize = settings.value("fontType").value<int>();
+    qDebug()<<"Font family"<<fontSize;
     settings.endGroup();
-    return color.name();
+    return fontSize;
 }
+
+
+
+
 
 void MySampleSettings::setSampleColor(QString sampleColor)
 {
@@ -73,13 +80,18 @@ void MySampleSettings::setfontType(QString fontType)
     QSettings settings("DasalGCS", "org.dasal");
     settings.beginGroup("MyCustomColors");
     settings.setValue("fontType", fontType);
+
     settings.endGroup();
 }
 
-void MySampleSettings::setfotSize(QString fontSize)
+void MySampleSettings::setfontSize(int fontSize)
 {
+    qDebug() << "font set";
     QSettings settings("DasalGCS", "org.dasal");
     settings.beginGroup("MyCustomColors");
     settings.setValue("fontSize", fontSize);
+
     settings.endGroup();
+
 }
+

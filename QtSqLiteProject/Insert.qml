@@ -9,7 +9,7 @@ import QtQuick.Controls.Styles 1.2
 
 
 Item {
-    anchors.centerIn: parent
+    //anchors.centerIn: parent
     property var vote
     property var yearss
     property var monthss
@@ -22,6 +22,21 @@ Item {
         color: mySettings.sampleColor
         height: parent.height
         width: parent.width
+
+        Image {
+            id: dasal
+            source: "qrc:/image/dasal.jpg"
+            width: 300
+            height: 300
+
+        }
+
+        Rectangle{
+            color:"#dddddd"
+            height: 450
+            width: 700
+            anchors.centerIn: parent
+        }
         ColumnLayout {
             id: rowLayout
             anchors.centerIn: parent
@@ -32,12 +47,14 @@ Item {
 
             anchors.margins: 5
 
+
             spacing: 10
             RowLayout{
                 Text{
                     id: name
                     text: qsTr("Original_title  :") + MyTrans.emptyString
                     font.pointSize: 20
+                    font.family: mySettings.fontType
 
                 }
                 TextField {
@@ -50,28 +67,23 @@ Item {
                     {
                     color: "#FFF";
                     border.color: "#999";
-                    border.width: 1;
+                    border.width: 2;
                     radius: 4
                 }
                 }
                 }
 
             }
-//            Component.completed: {
-//                while(original_titleField.items.length > 0)
-//                    original_titleField.removeItem(original_titleField.items[0]);
-//            }
 
-
-
-            RowLayout{
+           RowLayout{
                 Text {id: textId1
                     text: qsTr("Release_date :") + MyTrans.emptyString
                     font.pointSize: 20
+                    font.family: mySettings.fontType
                 }
                 //TextField { id: release_dateField}
                 ComboBox {
-
+                    editable: true
                     currentIndex: 0
                     model: ListModel {
                         id: years
@@ -109,7 +121,7 @@ Item {
                     }
                 }
                 ComboBox {
-
+                    editable: true
                     currentIndex: 0
                     model: ListModel {
                         id: months
@@ -136,7 +148,7 @@ Item {
                     }
                 }
                 ComboBox {
-
+                    editable: true
                     currentIndex: 0
                     model: ListModel {
                         id: day
@@ -188,9 +200,11 @@ Item {
                 Text {
                     text: qsTr("Vote_average :") + MyTrans.emptyString
                     font.pointSize: 20
+                    font.family: mySettings.fontType
                 }
                 //TextField { id: vote_averageField}
                 ComboBox {
+                    editable: true
                     currentIndex: 0
                     model: ListModel {
                         id: vote_averageField
@@ -207,6 +221,8 @@ Item {
                         ListElement { text: "9" }
                         ListElement { text: "10" }
                     }
+
+
                     width: 200
                     onCurrentIndexChanged:{
                         var combox = vote_averageField.get(currentIndex).text
@@ -220,6 +236,7 @@ Item {
                 Text {
                     text: qsTr("Tagline          :") + MyTrans.emptyString
                     font.pointSize: 20
+                    font.family: mySettings.fontType
                 }
 
                 TextField {
@@ -246,6 +263,7 @@ Item {
                 Text{
                     text: qsTr("Image           :") + MyTrans.emptyString
                     font.pointSize: 20
+                    font.family: mySettings.fontType
                 }
 
                 Button{
@@ -254,7 +272,7 @@ Item {
                 Text {
                     anchors.centerIn: parent
                     text: qsTr("Image Selecet") + MyTrans.emptyString
-                    font { family: "Arial"; pointSize: 15; }
+                    font { family: mySettings.fontType; pointSize: 15; }
                 }
 
 
@@ -289,7 +307,7 @@ Item {
                 Text {
                     anchors.centerIn: parent
                     text: qsTr("Add") + MyTrans.emptyString
-                    font { family: "Arial"; pointSize: 15; }
+                    font { family: mySettings.fontType; pointSize: 15; }
                 }
 
                 // Veritabanına yeni bir giriş yapın
@@ -308,6 +326,12 @@ Item {
                     if(database.inserIntoTable(original_titleField.text , date, taglineField.text, vote, fileDialog.fileUrl))
                     {
                         console.log("Kayit basariyla eklendi")
+                        taglineField.text = "";
+                        original_titleField.text = "";
+                        years.clear();
+                        vote_averageField.clear();
+                        day.clear();
+                        months.clear();
                         myModel.updateModel() // And updates the data model with a new record
 
 

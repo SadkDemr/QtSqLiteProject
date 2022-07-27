@@ -3,7 +3,11 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.1
 import QtQuick.Dialogs 1.2
-
+import QtQuick.Controls.Styles 1.3
+import QtQuick.Controls.Private 1.0
+import QtQuick.Controls 1.3
+import QtQuick.Controls 2.12
+import QtQuick.Controls 2.3 as QQC2
 
 Item {
     property var vote
@@ -11,6 +15,13 @@ Item {
     property var monthss
     property var days
     property var date
+    Rectangle{
+       width: parent.width
+       height: parent.height
+       color:mySettings.sampleColor
+
+    }
+
 
     TableView {
         id: tableView
@@ -45,35 +56,36 @@ Item {
         TableViewColumn {
 
             role: "id"
+
             title: "ID"
 
-            width: 200
+            width: 50
 
         }
         TableViewColumn {
             role: "original_title"
-            title: "original_title"
+            title: qsTr("Original_Title")
            width: 500
         }
         TableViewColumn {
             role: "release_date"
-            title: "release_date"
+            title: qsTr("Release_Date")
              width: 200
         }
 
         TableViewColumn {
             role: "vote_average"
-            title: "vote_average"
+            title: qsTr("Vote_Average")
              width: 200
         }
         TableViewColumn {
             role: "tagline"
-            title: "tagline"
+            title: qsTr("Tagline")
            width: 500
         }
         TableViewColumn {
             role: "image"
-            title: "Image"
+            title: qsTr("Image")
             width: 200
             //width: root.width/4
             delegate:imageDelegate
@@ -91,13 +103,14 @@ Item {
                         fillMode: Image.PreserveAspectFit
                         height:50
                         width: 100
-                        cache : true;
+                        //cache : true;
                         asynchronous: true;
                         source: "file:///"+styleData.value// !== undefined  ? styleData.value : ""
                     }
                 }
 
          }
+
 
 
 
@@ -115,6 +128,8 @@ Item {
                     tableView.selection.select(styleData.row)
                     tableView.currentRow = styleData.row
                     tableView.focus = true
+
+
 
                     switch(mouse.button) {
                     case Qt.LeftButton:
@@ -143,8 +158,16 @@ Item {
         }
         MenuItem{
             text: qsTr("Düzenle") + MyTrans.emptyString
+
             onTriggered:{
+                console.log("myModel.get(tableView.currentRow).title : " + myModel.getTitle(tableView.currentRow))
+                console.log("tableView.currentRow : " + tableView.currentRow);
+                original_titleField.text = myModel.getTitle(tableView.currentRow);
+                taglineField.text= myModel.getTag(tableView.currentRow);
+                release_dateField.text = myModel.getDate(tableView.currentRow);
+                vote_averageField.text = myModel.getVote(tableView.currentRow);
                 popup.open()
+
             }
         }
         MenuItem{
@@ -187,10 +210,11 @@ Item {
     Popup{
         id:popup
         background: Rectangle{
-            implicitHeight: 10
-            implicitWidth: 2
+            implicitHeight: 100
+            implicitWidth: parent.width
             border.color: "green"
         }
+
 
         contentItem: RowLayout{
             id: rowLayout
@@ -199,152 +223,23 @@ Item {
             TextField {
                 id: original_titleField
             }
+
+
             Text {
                 id: textId1
                 text: qsTr("release_date") + MyTrans.emptyString
             }
-            //TextField { id: release_dateField}
-            ComboBox {
+            TextField { id: release_dateField}
 
-                currentIndex: 0
-                model: ListModel {
-                    id: years
-                    ListElement { text: "" }
-                    ListElement { text: "2000" }
-                    ListElement { text: "2001" }
-                    ListElement { text: "2002" }
-                    ListElement { text: "2003" }
-                    ListElement { text: "2004" }
-                    ListElement { text: "2005" }
-                    ListElement { text: "2006" }
-                    ListElement { text: "2007" }
-                    ListElement { text: "2008" }
-                    ListElement { text: "2009" }
-                    ListElement { text: "2010" }
-                    ListElement { text: "2011" }
-                    ListElement { text: "2012" }
-                    ListElement { text: "2013" }
-                    ListElement { text: "2014" }
-                    ListElement { text: "2015" }
-                    ListElement { text: "2016" }
-                    ListElement { text: "2017" }
-                    ListElement { text: "2018" }
-                    ListElement { text: "2019" }
-                    ListElement { text: "2020" }
-                    ListElement { text: "2021" }
-                    ListElement { text: "2022" }
-                }
-
-                width: 200
-
-                onCurrentIndexChanged:{
-                    yearss = years.get(currentIndex).text
-                    console.debug(yearss)
-                }
-            }
-            ComboBox {
-
-                currentIndex: 0
-                model: ListModel {
-                    id: months
-                    ListElement { text: "" }
-                    ListElement { text: "01" }
-                    ListElement { text: "02" }
-                    ListElement { text: "03" }
-                    ListElement { text: "04" }
-                    ListElement { text: "05" }
-                    ListElement { text: "06" }
-                    ListElement { text: "07" }
-                    ListElement { text: "08" }
-                    ListElement { text: "09" }
-                    ListElement { text: "10" }
-                    ListElement { text: "11" }
-                    ListElement { text: "12" }
-                }
-
-                width: 200
-                onCurrentIndexChanged:{
-                    monthss = months.get(currentIndex).text
-                    console.debug(monthss)
-                }
-            }
-            ComboBox {
-
-                currentIndex: 0
-                model: ListModel {
-                    id: day
-                    ListElement { text: "" }
-                    ListElement { text: "01" }
-                    ListElement { text: "02" }
-                    ListElement { text: "03" }
-                    ListElement { text: "04" }
-                    ListElement { text: "05" }
-                    ListElement { text: "06" }
-                    ListElement { text: "07" }
-                    ListElement { text: "08" }
-                    ListElement { text: "09" }
-                    ListElement { text: "10" }
-                    ListElement { text: "11" }
-                    ListElement { text: "12" }
-                    ListElement { text: "13" }
-                    ListElement { text: "14" }
-                    ListElement { text: "15" }
-                    ListElement { text: "16" }
-                    ListElement { text: "17" }
-                    ListElement { text: "18" }
-                    ListElement { text: "19" }
-                    ListElement { text: "20" }
-                    ListElement { text: "21" }
-                    ListElement { text: "22" }
-                    ListElement { text: "23" }
-                    ListElement { text: "24" }
-                    ListElement { text: "25" }
-                    ListElement { text: "26" }
-                    ListElement { text: "27" }
-                    ListElement { text: "30" }
-                    ListElement { text: "31" }
-
-                }
-
-                width: 200
-                onCurrentIndexChanged:{
-                    days = day.get(currentIndex).text
-                    console.debug(days)
-                    date = yearss + "-" + monthss + "-" + days
-                    console.debug(date)
-                }
-            }
 
 
             Text {text: qsTr(" vote_average") + MyTrans.emptyString}
-            //TextField { id: vote_averageField}
-            ComboBox {
-                currentIndex: 0
+            TextField { id: vote_averageField}
 
-                model: ListModel {
-                    id: vote_averageField
-                    ListElement { text: "" }
-                    ListElement { text: "0" }
-                    ListElement { text: "1" }
-                    ListElement { text: "2" }
-                    ListElement { text: "3" }
-                    ListElement { text: "4" }
-                    ListElement { text: "5" }
-                    ListElement { text: "6" }
-                    ListElement { text: "7" }
-                    ListElement { text: "8" }
-                    ListElement { text: "9" }
-                    ListElement { text: "10" }
-                }
-                width: 200
-                onCurrentIndexChanged:{
-                    var combox = vote_averageField.get(currentIndex).text
-                    vote=combox
-                    console.debug(combox)
-            }
-        }
             Text {text: qsTr("tagline") + MyTrans.emptyString}
-            TextField {id: taglineField}
+            TextField {
+                id: taglineField
+            }
 
             Button{
             text: qsTr("Image Selecet") + MyTrans.emptyString
@@ -374,6 +269,7 @@ Item {
 
                        dialogDuzenle.open()
 
+
                 }
             }
             MessageDialog{
@@ -387,10 +283,15 @@ Item {
                     //current_id = myModel.getId(tableView.currentRow)
 
                     // fonksiyona giden butun data lara debug at
-                        if(database.update((myModel.getId(tableView.currentRow)),original_titleField.text , date, taglineField.text, vote, fileDialog.fileUrl))
+                        if(database.update((myModel.getId(tableView.currentRow)),original_titleField.text , release_dateField.text, taglineField.text, vote_averageField.text, fileDialog.fileUrl))
                         {
 
                             console.log("Kayit basariyla düzenlendi")
+                            original_titleField.text = "";
+                            release_dateField.text = "";
+                            taglineField.text = "";
+                            vote_averageField.text = "";
+
                             myModel.updateModel()
 
                         }

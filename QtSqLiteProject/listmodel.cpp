@@ -1,6 +1,7 @@
 #include "listmodel.h"
 #include "database.h"
 #include <QLabel>
+#include <QSqlRecord>
 
 ListModel::ListModel(QObject *parent) :
     QSqlQueryModel(parent)
@@ -20,7 +21,9 @@ QVariant ListModel::data(const QModelIndex & index, int role) const {
     return QSqlQueryModel::data(modelIndex, Qt::DisplayRole);
 }
 
-QHash<int, QByteArray> ListModel::roleNames() const {
+
+
+QHash<int, QByteArray> ListModel::roleNames() const  {
 
     QHash<int, QByteArray> roles;
       roles[IdRole] = "id";
@@ -37,17 +40,8 @@ void ListModel::updateModel()
 {
     //veritabanına SQL sorguları gerçekleştirilir
    this->setQuery("SELECT id, " TABLE_TITLE ", " TABLE_DATE ", " TABLE_TAG" , " TABLE_VOTE"," TABLE_IMAGE " FROM " TABLE);
-//    qDebug()<<"Image Show";
-//    QByteArray outByteArray =TABLE_IMAGE ;
-//        QPixmap outPixmap = QPixmap();
-//        outPixmap.loadFromData( outByteArray );
-//   qDebug()<< outByteArray;
+   //this->setQuery("SELECT id, " TABLE_TITLE " FROM " TABLE);
 
-//        // Display image
-//        QLabel myLabel;
-//        myLabel.setPixmap( outPixmap );
-//        myLabel.show();
-//    qDebug()<< outPixmap;
 }
 
 void ListModel::updateData()
@@ -65,6 +59,36 @@ int ListModel::getId(int row)
 {
     return this->data(this->index(row, 0), IdRole).toInt();
 }
+
+QString ListModel::getTitle(int row)
+{
+    qDebug() << "row : " << row;
+
+    qDebug() << "this->index(row, 0) : " << this->index(row, 0);
+
+    qDebug() << "this->data(this->index(row, 0), TitleRole).toString() : " << this->data(this->index(row, 0), TitleRole).toString();
+
+    return this->data(this->index(row, 0), TitleRole).toString();
+
+}
+
+QString ListModel::getTag(int row)
+{
+    return this->data(this->index(row, 0), TagRole).toString();
+}
+
+QString ListModel::getDate(int row)
+{
+   return this->data(this->index(row, 0), DateRole).toString();
+}
+
+int ListModel::getVote(int row)
+{
+  return this->data(this->index(row, 0), VoteRole).toInt();
+}
+
+
+
 
 
 
