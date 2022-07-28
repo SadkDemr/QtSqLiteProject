@@ -193,7 +193,7 @@ public:
 ```
 
 ```c++
-Qml example
+//Qml example
 text: qsTr("Background Color") + MyTrans.emptyString
 ```
 
