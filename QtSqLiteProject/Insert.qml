@@ -1,11 +1,10 @@
 import QtQuick 2.5
-import QtQuick.Controls 1.4
-import QtQuick.Layouts 1.1
-import QtQuick.Dialogs 1.2
-import Qt.labs.settings 1.0
-import QtQuick 2.3
-import QtQuick.Controls 1.2
-import QtQuick.Controls.Styles 1.2
+import QtQuick.Controls 1.4 //TextField
+import QtQuick.Layouts 1.1 //ColumnLayout
+import QtQuick.Dialogs 1.2 //FileDialog
+//import Qt.labs.settings 1.0
+//import QtQuick.Controls 1.2
+import QtQuick.Controls.Styles 1.2 //TextFieldStyle
 
 
 Item {
@@ -23,18 +22,18 @@ Item {
         height: parent.height
         width: parent.width
 
-        Image {
-            id: dasal
-            source: "qrc:/image/dasal.jpg"
-            width: 300
-            height: 300
+//        Image {
+//            id: dasal
+//            source: "qrc:/image/dasal.jpg"
+//            width: 300
+//            height: 300
 
-        }
+//        }
 
         Rectangle{
             color:"#dddddd"
-            height: 450
-            width: 700
+            height: 600
+            width: 750
             anchors.centerIn: parent
         }
         ColumnLayout {
@@ -52,7 +51,7 @@ Item {
             RowLayout{
                 Text{
                     id: name
-                    text: qsTr("Original_title  :") + MyTrans.emptyString
+                    text: qsTr("Original_title :") + MyTrans.emptyString
                     font.pointSize: 20
                     font.family: mySettings.fontType
 
@@ -83,7 +82,6 @@ Item {
                 }
                 //TextField { id: release_dateField}
                 ComboBox {
-                    editable: true
                     currentIndex: 0
                     model: ListModel {
                         id: years
@@ -121,7 +119,6 @@ Item {
                     }
                 }
                 ComboBox {
-                    editable: true
                     currentIndex: 0
                     model: ListModel {
                         id: months
@@ -148,7 +145,6 @@ Item {
                     }
                 }
                 ComboBox {
-                    editable: true
                     currentIndex: 0
                     model: ListModel {
                         id: day
@@ -204,7 +200,6 @@ Item {
                 }
                 //TextField { id: vote_averageField}
                 ComboBox {
-                    editable: true
                     currentIndex: 0
                     model: ListModel {
                         id: vote_averageField
@@ -234,7 +229,7 @@ Item {
 
             RowLayout{
                 Text {
-                    text: qsTr("Tagline          :") + MyTrans.emptyString
+                    text: qsTr("Tagline             :") + MyTrans.emptyString
                     font.pointSize: 20
                     font.family: mySettings.fontType
                 }
@@ -249,7 +244,7 @@ Item {
                     {
                     color: "#FFF";
                     border.color: "#999";
-                    border.width: 1;
+                    border.width: 2;
                     radius: 4
                 }
                 }
@@ -261,7 +256,7 @@ Item {
 
             RowLayout{
                 Text{
-                    text: qsTr("Image           :") + MyTrans.emptyString
+                    text: qsTr("Image               :") + MyTrans.emptyString
                     font.pointSize: 20
                     font.family: mySettings.fontType
                 }
@@ -286,7 +281,7 @@ Item {
 
             FileDialog {
                 id: fileDialog
-                title: "Please choose a file"
+                title: qsTr("Please choose a file") + MyTrans.emptyString
                 folder: shortcuts.home
                 nameFilters: [ "Image files (*.jpg *.png)", "All files (*)" ]
                 onAccepted: {
@@ -299,10 +294,25 @@ Item {
                 Component.onCompleted: visible = false
             }
 
+            Rectangle{
+                id:imageRec
+                color: "white"
+                height: 200
+                width: 600
+                border.width: 2;
+                Image {
+                    id: fileDialogUrl
+                    anchors.centerIn: parent
+                    height: 200
+                    width: 250
+                    source: fileDialog.fileUrl
+                }
 
+
+            }
 
             Button {
-                Layout.preferredWidth: parent.width * 0.9
+                Layout.preferredWidth: parent.width * 1
                 Layout.preferredHeight:parent.height * 0.2
                 Text {
                     anchors.centerIn: parent
@@ -318,26 +328,27 @@ Item {
             }
             MessageDialog{
                 id: dialogKayit
-                title: qsTr("Kayıt") + MyTrans.emptyString
-                text: qsTr("Kayıt İşlemi Tamamlansın mı?") + MyTrans.emptyString
+                title: qsTr("Record") + MyTrans.emptyString
+                text: qsTr("Complete the Registration Process?") + MyTrans.emptyString
                 icon: StandardIcon.Warning
                 standardButtons: StandardButton.Yes | StandardButton.No
                 onYes: {
                     if(database.inserIntoTable(original_titleField.text , date, taglineField.text, vote, fileDialog.fileUrl))
                     {
-                        console.log("Kayit basariyla eklendi")
+                        console.log("Record Successfully")
                         taglineField.text = "";
                         original_titleField.text = "";
                         years.clear();
                         vote_averageField.clear();
                         day.clear();
                         months.clear();
+                        fileDialog.clearSelection();
                         myModel.updateModel() // And updates the data model with a new record
 
 
                     }
                     else{
-                        console.log("Kayit eklenemedi")
+                        console.log("Failed to add record!!!")
                     }
                 }
                 onNo: {

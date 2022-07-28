@@ -1,11 +1,11 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Dialogs 1.3
-import Qt.labs.settings 1.0
-import QtQuick.Controls 2.4
-import QtQuick.Layouts 1.1
-import QtQuick.Dialogs 1.2
-import QtQuick.Controls.Styles 1.2
+//import Qt.labs.settings 1.0
+import QtQuick.Controls 2.4 //Button
+//import QtQuick.Layouts 1.1
+//import QtQuick.Dialogs 1.2
+//import QtQuick.Controls.Styles 1.2
 
 import MyLang 1.0
 
@@ -14,6 +14,7 @@ Item {
     id: settings
 
     visible: true
+
     //        Settings {
     //            id: setting4
     //                category: "General"
@@ -51,13 +52,6 @@ Item {
 //                }
 //            }
 
-            Text {
-                id : textId
-                text : "Merhaba Dünya"
-                font.family: mySettings.fontType
-                font.pointSize: 15
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
             Button {
                 id: btn
                 text: qsTr("Background Color") + MyTrans.emptyString
@@ -72,12 +66,12 @@ Item {
                //arka plan rengini değiştirmek için kullanılır.
                 ColorDialog {
                     id: colorDialogId
-                    title: "Please choose a color"
+                    title: qsTr("Please choose a color")+ MyTrans.emptyString
                     onAccepted: {
                         console.log("The new color is : "+ color)
                         rectId.color = color
                         mySettings.setSampleColor(color);
-                        console.log("Yeni renk : "+ mySettings.sampleColor)
+                        console.log("New color : "+ mySettings.sampleColor)
 
 
                     }
@@ -99,6 +93,7 @@ Item {
                 Text {id: textId1
                     text: qsTr("Font Tipi :") + MyTrans.emptyString
                     font.pointSize: 15
+                    font.family: mySettings.fontType
                 }
                 ComboBox {
                     editable: true

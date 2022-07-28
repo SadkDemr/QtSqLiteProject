@@ -2,7 +2,7 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.4
 import QtQuick.Dialogs 1.3
-import Qt.labs.settings 1.0
+//import Qt.labs.settings 1.0
 import MyLang 1.0
 
 ApplicationWindow {
@@ -43,15 +43,6 @@ ApplicationWindow {
             }
         }
 
-        TabButton {
-            text : qsTr("Deneme") + MyTrans.emptyString
-            height: 50
-            onClicked: {
-                mStackId.pop()
-                mStackId.push("qrc:/Deneme.qml")
-                console.log("Number of items : " + mStackId.depth)
-            }
-        }
         TabButton {
 
             ColorAnimation {

@@ -4,70 +4,204 @@
 <context>
     <name>Insert</name>
     <message>
-        <location filename="../Insert.qml" line="28"/>
         <source>original_title</source>
-        <translation>originaler_titel</translation>
+        <translation type="vanished">originaler_titel</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="34"/>
         <source>release_date</source>
-        <translation>Veröffentlichungsdatum</translation>
+        <translation type="vanished">Veröffentlichungsdatum</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="37"/>
         <source> vote_average</source>
-        <translation> Stimmendurchschnitt</translation>
+        <translation type="vanished"> Stimmendurchschnitt</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="39"/>
         <source>tagline</source>
-        <translation>Slogan</translation>
+        <translation type="vanished">Slogan</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="41"/>
         <source>image</source>
-        <translation>Bild</translation>
+        <translation type="vanished">Bild</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="45"/>
+        <location filename="../Insert.qml" line="54"/>
+        <source>Original_title :</source>
+        <translation>Originaler_Titel :</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="79"/>
+        <source>Release_date :</source>
+        <translation>Veröffentlichungsdatum :</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="197"/>
+        <source>Vote_average :</source>
+        <translation>Stimmendurchschnitt :</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="232"/>
+        <source>Tagline             :</source>
+        <translation>Stichwort           :</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="259"/>
+        <source>Image               :</source>
+        <translation>Bild               :</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="269"/>
+        <source>Image Selecet</source>
+        <translation>Bild auswählen</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="284"/>
+        <source>Please choose a file</source>
+        <translation>Bitte wählen Sie eine Datei aus</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="319"/>
         <source>Add</source>
         <translation>Hinzufügen</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="66"/>
-        <source>Kayıt</source>
+        <location filename="../Insert.qml" line="331"/>
+        <source>Record</source>
         <translation>Aufzeichnung</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="67"/>
-        <source>Kayıt İşlemi Tamamlansın mı?</source>
+        <location filename="../Insert.qml" line="332"/>
+        <source>Complete the Registration Process?</source>
         <translation>Den Registrierungsprozess abschließen?</translation>
+    </message>
+    <message>
+        <source>Kayıt</source>
+        <translation type="vanished">Aufzeichnung</translation>
+    </message>
+    <message>
+        <source>Kayıt İşlemi Tamamlansın mı?</source>
+        <translation type="vanished">Den Registrierungsprozess abschließen?</translation>
     </message>
 </context>
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../MainPage.qml" line="102"/>
         <source>Sil</source>
-        <translation>löschen</translation>
+        <translation type="vanished">löschen</translation>
     </message>
     <message>
-        <location filename="../MainPage.qml" line="114"/>
         <source>Kaydı sil</source>
+        <translation type="vanished">Aufzeichnung löschen</translation>
+    </message>
+    <message>
+        <source>Girişlerin silinmesini onaylayın!!</source>
+        <translation type="vanished">Löschung bestätigen!!</translation>
+    </message>
+    <message>
+        <location filename="../MainPage.qml" line="62"/>
+        <source>Original_Title</source>
+        <translation>Originaler_Titel</translation>
+    </message>
+    <message>
+        <location filename="../MainPage.qml" line="67"/>
+        <source>Release_Date</source>
+        <translation>Veröffentlichungsdatum</translation>
+    </message>
+    <message>
+        <location filename="../MainPage.qml" line="73"/>
+        <source>Vote_Average</source>
+        <translation>Durchschnitt_abstimmen</translation>
+    </message>
+    <message>
+        <location filename="../MainPage.qml" line="78"/>
+        <location filename="../MainPage.qml" line="235"/>
+        <source>Tagline</source>
+        <translation>Slogan</translation>
+    </message>
+    <message>
+        <location filename="../MainPage.qml" line="83"/>
+        <location filename="../MainPage.qml" line="240"/>
+        <source>Image</source>
+        <translation>Bild</translation>
+    </message>
+    <message>
+        <location filename="../MainPage.qml" line="146"/>
+        <source>Delete</source>
+        <translation>Löschen</translation>
+    </message>
+    <message>
+        <location filename="../MainPage.qml" line="155"/>
+        <location filename="../MainPage.qml" line="269"/>
+        <source>Edit</source>
+        <translation>Bearbeiten</translation>
+    </message>
+    <message>
+        <location filename="../MainPage.qml" line="171"/>
+        <location filename="../MainPage.qml" line="307"/>
+        <source>Canceled</source>
+        <translation>Abgesagt</translation>
+    </message>
+    <message>
+        <location filename="../MainPage.qml" line="181"/>
+        <source>Delete record</source>
         <translation>Aufzeichnung löschen</translation>
     </message>
     <message>
-        <location filename="../MainPage.qml" line="115"/>
-        <source>Girişlerin silinmesini onaylayın!!</source>
-        <translation>Löschung bestätigen!!</translation>
+        <location filename="../MainPage.qml" line="182"/>
+        <source>Confirm the deletion of entries!!</source>
+        <translation>Löschen der Einträge bestätigen!!</translation>
+    </message>
+    <message>
+        <location filename="../MainPage.qml" line="217"/>
+        <source>Original_title</source>
+        <translation>Originaler_Titel</translation>
+    </message>
+    <message>
+        <location filename="../MainPage.qml" line="226"/>
+        <source>Release_date</source>
+        <translation>Veröffentlichungsdatum</translation>
+    </message>
+    <message>
+        <location filename="../MainPage.qml" line="232"/>
+        <source> Vote_average</source>
+        <translation> Durchschnitt_abstimmen</translation>
+    </message>
+    <message>
+        <location filename="../MainPage.qml" line="247"/>
+        <source>Image Selecet</source>
+        <translation>Bild auswählen</translation>
+    </message>
+    <message>
+        <location filename="../MainPage.qml" line="254"/>
+        <source>Please choose a file</source>
+        <translation>Bitte wählen Sie eine Datei aus</translation>
+    </message>
+    <message>
+        <location filename="../MainPage.qml" line="280"/>
+        <source>Regulation</source>
+        <translation>Verordnung</translation>
+    </message>
+    <message>
+        <location filename="../MainPage.qml" line="281"/>
+        <source>Finish Editing?</source>
+        <translation>Bearbeitung beenden?</translation>
     </message>
 </context>
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../Settings.qml" line="56"/>
+        <location filename="../Settings.qml" line="57"/>
         <source>Background Color</source>
         <translation>Hintergrundfarbe</translation>
+    </message>
+    <message>
+        <location filename="../Settings.qml" line="69"/>
+        <source>Please choose a color</source>
+        <translation>Bitte wählen Sie eine Farbe</translation>
+    </message>
+    <message>
+        <location filename="../Settings.qml" line="94"/>
+        <source>Font Tipi :</source>
+        <translation>Schriftart :</translation>
     </message>
 </context>
 <context>
@@ -83,22 +217,21 @@
         <translation>Hauptseite</translation>
     </message>
     <message>
-        <location filename="../main.qml" line="25"/>
+        <location filename="../main.qml" line="26"/>
         <source>Insert</source>
         <translation>Einfügung</translation>
     </message>
     <message>
-        <location filename="../main.qml" line="34"/>
         <source>Update</source>
-        <translation>Aktualisieren</translation>
+        <translation type="vanished">Aktualisieren</translation>
     </message>
     <message>
-        <location filename="../main.qml" line="43"/>
+        <location filename="../main.qml" line="37"/>
         <source>Settings</source>
         <translation>Einstellung</translation>
     </message>
     <message>
-        <location filename="../main.qml" line="57"/>
+        <location filename="../main.qml" line="53"/>
         <source>Quit</source>
         <translation>Aufhören</translation>
     </message>

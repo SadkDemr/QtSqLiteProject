@@ -12,6 +12,17 @@
 #include <QImage>
 #include <QFileDialog>
 
+/*
+
+  Bütün database işlemleri burda yapılmaktadır. Database ile bağlantı, Database yoksa oluşturulması.
+  kapatılması, düzenlenmesi, insert , update ve delete işlemleri burada yapılmaktadır.
+
+  All database operations are done here. Connection with database, creation of database if there is no database.
+  Closing, editing, insert, update and delete operations are done here.
+
+
+*/
+
 #define DATABASE_HOSTNAME   "moviesDataBase"
 #define DATABASE_NAME       "movies.sqlite"
 
@@ -42,7 +53,6 @@ private:
 
 
 public slots:
-    //void getUploadFile();
 
     bool inserIntoTable(const QString &title, const QDate &date, const QString &tag, const QString &vote, const QString &image);
     bool update(const int id,const QString &title, const QDate &date, const QString &tag, const QString &vote, const QString &image);

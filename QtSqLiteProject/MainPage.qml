@@ -1,8 +1,8 @@
 import QtQuick 2.5
-import QtQuick.Controls 1.4
-import QtQuick.Controls 2.4
-import QtQuick.Layouts 1.1
-import QtQuick.Dialogs 1.2
+//import QtQuick.Controls 1.4
+//import QtQuick.Controls 2.4
+import QtQuick.Layouts 1.1 //RowLayout
+import QtQuick.Dialogs 1.2 //
 import QtQuick.Controls.Styles 1.3
 import QtQuick.Controls.Private 1.0
 import QtQuick.Controls 1.3
@@ -25,15 +25,10 @@ Item {
 
     TableView {
         id: tableView
-        //anchors.fill: racesWindow
-        //anchors.top: rowLayout.bottom
         anchors.centerIn: parent
         width: 1800
         height: 800
-        //anchors.bottom: parent.bottom
-        //anchors.margins: 10
-        //anchors.fill: tableArea
-        //headerDelegate: headersDel
+
 
 
 
@@ -64,28 +59,28 @@ Item {
         }
         TableViewColumn {
             role: "original_title"
-            title: qsTr("Original_Title")
+            title: qsTr("Original_Title")+ MyTrans.emptyString
            width: 500
         }
         TableViewColumn {
             role: "release_date"
-            title: qsTr("Release_Date")
+            title: qsTr("Release_Date")+ MyTrans.emptyString
              width: 200
         }
 
         TableViewColumn {
             role: "vote_average"
-            title: qsTr("Vote_Average")
+            title: qsTr("Vote_Average")+ MyTrans.emptyString
              width: 200
         }
         TableViewColumn {
             role: "tagline"
-            title: qsTr("Tagline")
+            title: qsTr("Tagline")+ MyTrans.emptyString
            width: 500
         }
         TableViewColumn {
             role: "image"
-            title: qsTr("Image")
+            title: qsTr("Image")+ MyTrans.emptyString
             width: 200
             //width: root.width/4
             delegate:imageDelegate
@@ -148,7 +143,7 @@ Item {
         id: contextMenu
 
         MenuItem {
-            text: qsTr("Sil") + MyTrans.emptyString
+            text: qsTr("Delete") + MyTrans.emptyString
             onTriggered: {
                 /* Satırı veritabanından kaldırma niyetini netleştirecek iletişim kutusunu çağırın
                  * */
@@ -157,7 +152,7 @@ Item {
 
         }
         MenuItem{
-            text: qsTr("Düzenle") + MyTrans.emptyString
+            text: qsTr("Edit") + MyTrans.emptyString
 
             onTriggered:{
                 console.log("myModel.get(tableView.currentRow).title : " + myModel.getTitle(tableView.currentRow))
@@ -166,13 +161,14 @@ Item {
                 taglineField.text= myModel.getTag(tableView.currentRow);
                 release_dateField.text = myModel.getDate(tableView.currentRow);
                 vote_averageField.text = myModel.getVote(tableView.currentRow);
+                imageField.text = "file:///" + myModel.getImage(tableView.currentRow);
                 popup.open()
 
             }
         }
         MenuItem{
             id: menuItemid
-            text: qsTr("Kapat")+ MyTrans.emptyString
+            text: qsTr("Canceled")+ MyTrans.emptyString
             onTriggered: {
                 popup.close()
             }
@@ -182,8 +178,8 @@ Item {
     // Veri tabanından kaldırma satırının onaylandığı iletişim kutusu
     MessageDialog {
         id: dialogDelete
-        title: qsTr("Kaydı sil") + MyTrans.emptyString
-        text: qsTr("Girişlerin silinmesini onaylayın!!") + MyTrans.emptyString
+        title: qsTr("Delete record") + MyTrans.emptyString
+        text: qsTr("Confirm the deletion of entries!!") + MyTrans.emptyString
         icon: StandardIcon.Warning
         standardButtons: StandardButton.Yes | StandardButton.No
 
@@ -194,11 +190,11 @@ Item {
              * */
             if(database.removeRecord(myModel.getId(tableView.currentRow))) //  if(true)
             {
-                console.log("Kayit basariyla silindi")
+                console.log("Registration deleted successfully!!")
                 myModel.updateModel();
             }
             else
-                console.log("Silinemedi");
+                console.log("Could not delete");
 
 
         }
@@ -218,7 +214,7 @@ Item {
 
         contentItem: RowLayout{
             id: rowLayout
-            Text{ text: qsTr("original_title") + MyTrans.emptyString
+            Text{ text: qsTr("Original_title") + MyTrans.emptyString
             }
             TextField {
                 id: original_titleField
@@ -227,18 +223,24 @@ Item {
 
             Text {
                 id: textId1
-                text: qsTr("release_date") + MyTrans.emptyString
+                text: qsTr("Release_date") + MyTrans.emptyString
             }
             TextField { id: release_dateField}
 
 
 
-            Text {text: qsTr(" vote_average") + MyTrans.emptyString}
+            Text {text: qsTr(" Vote_average") + MyTrans.emptyString}
             TextField { id: vote_averageField}
 
-            Text {text: qsTr("tagline") + MyTrans.emptyString}
+            Text {text: qsTr("Tagline") + MyTrans.emptyString}
             TextField {
                 id: taglineField
+            }
+
+            Text {text: qsTr("Image") + MyTrans.emptyString}
+            TextField {
+                id: imageField
+
             }
 
             Button{
@@ -249,11 +251,12 @@ Item {
             }
             FileDialog {
                 id: fileDialog
-                title: "Please choose a file"
+                title: qsTr("Please choose a file")+ MyTrans.emptyString
                 folder: shortcuts.home
                 nameFilters: [ "Image files (*.jpg *.png)", "All files (*)" ]
                 onAccepted: {
                     console.log("You chose: " + fileDialog.fileUrl)
+                    imageField.text = fileDialog.fileUrl;
                 }
                 onRejected: {
                     console.log("Canceled")
@@ -263,7 +266,7 @@ Item {
             }
 
             Button{
-                text: qsTr("Düzenle") + MyTrans.emptyString
+                text: qsTr("Edit") + MyTrans.emptyString
 
                 onClicked: {
 
@@ -274,29 +277,24 @@ Item {
             }
             MessageDialog{
                 id: dialogDuzenle
-                title: qsTr("Kayıt") + MyTrans.emptyString
-                text: qsTr("Kayıt İşlemi Tamamlansın mı?") + MyTrans.emptyString
+                title: qsTr("Regulation") + MyTrans.emptyString
+                text: qsTr("Finish Editing?") + MyTrans.emptyString
                 icon: StandardIcon.Warning
                 standardButtons: StandardButton.Yes | StandardButton.No
                 onYes: {
-                    //database.removeRecord(myModel.getId(tableView.currentRow)
-                    //current_id = myModel.getId(tableView.currentRow)
-
-                    // fonksiyona giden butun data lara debug at
-                        if(database.update((myModel.getId(tableView.currentRow)),original_titleField.text , release_dateField.text, taglineField.text, vote_averageField.text, fileDialog.fileUrl))
+                        if(database.update((myModel.getId(tableView.currentRow)),original_titleField.text , release_dateField.text, taglineField.text, vote_averageField.text, imageField.text))
                         {
-
-                            console.log("Kayit basariyla düzenlendi")
+                            console.log("Edited successfully")
                             original_titleField.text = "";
                             release_dateField.text = "";
                             taglineField.text = "";
                             vote_averageField.text = "";
-
+                            imageField.text="";
                             myModel.updateModel()
 
                         }
                     else{
-                        console.log("Kayit düzenlenmedi")
+                        console.log("Not edited")
                     }
                    }
 
@@ -306,7 +304,7 @@ Item {
 
                 }
             Button {
-                   text: qsTr("Kapat") + MyTrans.emptyString
+                   text: qsTr("Canceled") + MyTrans.emptyString
                    // Respond to the signal here.
                    onClicked: popup.close();
                }

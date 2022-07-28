@@ -20,7 +20,6 @@ void MySampleSettings::createSettingsGroup()
     qDebug() << "Settings group creating...";
 
     QSettings settings("DasalGCS", "org.dasal");
-
     settings.beginGroup("MyCustomColors");
     settings.setValue("sampleColor", "grey");
     settings.setValue("fontType", "QFont(Algerian,24,-1,5,50,0,0,0,0,0,Regular)");

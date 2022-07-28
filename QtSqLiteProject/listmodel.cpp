@@ -11,11 +11,15 @@ ListModel::ListModel(QObject *parent) :
 }
 
 // Modelden veri elde etme yöntemi
+// Method of obtaining data from the model
 QVariant ListModel::data(const QModelIndex & index, int role) const {
 
     // Sayı rolüne göre sütun numarasını tanımlayın
+    // Define column number by number role
     int columnId = role - Qt::UserRole - 1;
+
     // Column id kullanarak dizi oluşturma
+    // Creating array using column id
     QModelIndex modelIndex = this->index(index.row(), columnId);
 
     return QSqlQueryModel::data(modelIndex, Qt::DisplayRole);
@@ -36,11 +40,12 @@ QHash<int, QByteArray> ListModel::roleNames() const  {
 }
 
 // Yöntem, veri modeli gösterimindeki tabloları günceller
+//The method updates the tables in the data model representation
 void ListModel::updateModel()
 {
     //veritabanına SQL sorguları gerçekleştirilir
+    //SQL queries to the database are performed
    this->setQuery("SELECT id, " TABLE_TITLE ", " TABLE_DATE ", " TABLE_TAG" , " TABLE_VOTE"," TABLE_IMAGE " FROM " TABLE);
-   //this->setQuery("SELECT id, " TABLE_TITLE " FROM " TABLE);
 
 }
 
@@ -55,11 +60,14 @@ void ListModel::updateData()
 }
 
 // Veri görünümü modelinde satırın kimliğini alma
+// Getting the id of the row in the data view model
 int ListModel::getId(int row)
 {
     return this->data(this->index(row, 0), IdRole).toInt();
 }
 
+//Seçilen Id değerine göre verileri yazdırma
+//Printing data based on selected Id value
 QString ListModel::getTitle(int row)
 {
     qDebug() << "row : " << row;
@@ -84,7 +92,12 @@ QString ListModel::getDate(int row)
 
 int ListModel::getVote(int row)
 {
-  return this->data(this->index(row, 0), VoteRole).toInt();
+    return this->data(this->index(row, 0), VoteRole).toInt();
+}
+
+QString ListModel::getImage(int row)
+{
+    return this->data(this->index(row, 0), ImageRole).toString();
 }
 
 
