@@ -1,7 +1,7 @@
 
 # Qml SqLite Project (Movies Database)
 
-![Qt](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Qt_logo_2016.svg/131px-Qt_logo_2016.svg.png)
+![Qt](https://github.com/SadkDemr/QtSqLiteProject/blob/main/QtSqLiteProject/Screenshot/Untitled%20Diagram.drawio.png?raw=true)
 
 In my project, my goal is to display, sort, delete, update and insert a database containing int, string and image. And generating all of them in the Qt Generator environment.
 
