@@ -3,7 +3,7 @@
 
 ![Qt](https://github.com/SadkDemr/QtSqLiteProject/blob/main/QtSqLiteProject/Screenshot/Untitled%20Diagram.drawio.png?raw=true)
 
-In my project, my goal is to display, sort, delete, update and insert a database containing int, string and image. And generating all of them in the Qt Generator environment.
+In my project, my goal is to display, sort, delete, update and insert a database containing int, string and image. And generating all of them in the Qt Creator environment.
 
 ## Main:
 ![Main](https://github.com/SadkDemr/QtSqLiteProject/blob/main/QtSqLiteProject/Screenshot/Screenshot%202022-07-28%20131716.png?raw=true)
