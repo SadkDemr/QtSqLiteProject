@@ -1,14 +1,12 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Dialogs 1.3
+import QtQuick.Layouts 1.0
 //import Qt.labs.settings 1.0
 import QtQuick.Controls 2.4 //Button
 //import QtQuick.Layouts 1.1
 //import QtQuick.Dialogs 1.2
 //import QtQuick.Controls.Styles 1.2
-
-import MyLang 1.0
-
 
 Item {
     id: settings
@@ -30,96 +28,108 @@ Item {
         anchors.fill: parent
         color: mySettings.sampleColor
 
-        Column {
-            spacing: 20
-            anchors.centerIn: parent          
-            //font tipini ve büyüklüğünü değiştirmek için kullanılır
-//            FontDialog{
-//                id : fontDialogId
-//                title: "Choose Font"
-//                font : Qt.font({ family: "Arial", pointSize: 10, weight: Font.Normal })
+        Image{
+            id:settingIcon
+            width: 200
+            height: 200
+            x:850
+            y:80
+            source: "qrc:/image/settings.png"
+        }
 
-//                onAccepted: {
-//                    console.log("Chose font : "+font)
-//                    textId.font = fontDialogId.font
-//                    mySettings.setfontType(fontDialogId.font);
-//                    console.log("New font : "+ mySettings.fontType)
-
-//                }
-
-//                onRejected: {
-//                    console.log("Dialog rejected")
-//                }
-//            }
-
-            Button {
-                id: btn
-                text: qsTr("Background Color") + MyTrans.emptyString
-                font.family: mySettings.fontType
-                font.pointSize: 12
-                anchors.horizontalCenter: parent.horizontalCenter
+        Image{
+            id:colorChange
+            width: 50
+            height: 50
+            x:1000
+            y:400
+            source: "qrc:/image/programming.png"
+            MouseArea{
+                anchors.fill: parent
                 onClicked: {
                     colorDialogId.open()
 
                 }
+            }
+        }
 
-               //arka plan rengini değiştirmek için kullanılır.
-                ColorDialog {
-                    id: colorDialogId
-                    title: qsTr("Please choose a color")+ MyTrans.emptyString
-                    onAccepted: {
-                        console.log("The new color is : "+ color)
-                        rectId.color = color
-                        mySettings.setSampleColor(color);
-                        console.log("New color : "+ mySettings.sampleColor)
 
+        Column {
+            spacing: 20
+            anchors.centerIn: parent          
+            RowLayout{
+
+                Button {
+                    id: btn
+                    text: qsTr("Background Color") + MyTrans.emptyString
+                    font.family: mySettings.fontType
+                    font.pointSize: 8
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    onClicked: {
+                        colorDialogId.open()
 
                     }
-                    onRejected: {
-                        console.log("Canceled")
+
+                   //arka plan rengini değiştirmek için kullanılır.
+                    //background change color
+                    ColorDialog {
+                        id: colorDialogId
+                        title: qsTr("Please choose a color")+ MyTrans.emptyString
+                        onAccepted: {
+                            console.log("The new color is : "+ color)
+                            rectId.color = color
+                            mySettings.setSampleColor(color);
+                            console.log("New color : "+ mySettings.sampleColor)
+
+
+                        }
+                        onRejected: {
+                            console.log("Canceled")
+                        }
                     }
-                }
 
-                }
-//            Button{
-//                text : qsTr("Font Değiştir") + MyTrans.emptyString
-//                anchors.horizontalCenter: parent.horizontalCenter
-//                onClicked: {
-//                    fontDialogId.open()
-//                }
-//            }
+                    }
+            }
 
 
+
+
+//font degistirme islemi
+//font change family
                 Text {id: textId1
                     text: qsTr("Font Tipi :") + MyTrans.emptyString
                     font.pointSize: 15
                     font.family: mySettings.fontType
                 }
-                ComboBox {
-                    editable: true
-                    currentIndex: 0
-                    model: ListModel {
-                        id: fontTyp
-                        ListElement { text: "Arial" }
-                        ListElement { text: "Helvetica" }
-                        ListElement { text: "Verdana" }
-                        ListElement { text: "Calibri" }
-                        ListElement { text: "Franklin Gothic Medium" }
-                        ListElement { text: "Geneva" }
-                        ListElement { text: "Times New Roman" }
-                        ListElement { text: "Cambria" }
 
+                    ComboBox {
+                        currentIndex: 0
+                        model: ListModel {
+                            id: fontTyp
+                            ListElement { text: "Arial" }
+                            ListElement { text: "Helvetica" }
+                            ListElement { text: "Verdana" }
+                            ListElement { text: "Calibri" }
+                            ListElement { text: "Franklin Gothic Medium" }
+                            ListElement { text: "Geneva" }
+                            ListElement { text: "Times New Roman" }
+                            ListElement { text: "Cambria" }
+
+                        }
+
+                        width: 200
+                        height: 100
+                        onCurrentIndexChanged:{
+                            fontType = fontTyp.get(currentIndex).text
+                            //textId.font = fontTyp.get(currentIndex).text
+                            mySettings.setfontType(fontType);
+                            console.debug(mySettings.fontType);
+                        }
                     }
 
-                    width: 200
-                    height: 100
-                    onCurrentIndexChanged:{
-                        fontType = fontTyp.get(currentIndex).text
-                        textId.font = fontTyp.get(currentIndex).text
-                        mySettings.setfontType(fontType);
-                        console.debug(mySettings.fontType);
-                    }
-                }
+
+
+
 
 //                Text {id: textId2
 //                    text: qsTr("Font Size :") + MyTrans.emptyString
@@ -182,7 +192,8 @@ Item {
                MouseArea{
                    anchors.fill: parent
                    onClicked: {
-                       MyTrans.updateLanguage(MyLang.ENG)
+                       MyTrans.updateLanguage(0)
+                       mySettings.setlng(0);
                    }
                }
            }
@@ -203,7 +214,9 @@ Item {
                MouseArea{
                    anchors.fill: parent
                    onClicked: {
-                       MyTrans.updateLanguage(MyLang.TR)
+
+                       MyTrans.updateLanguage(1)
+                       mySettings.setlng(1);
                    }
                }
            }
@@ -225,7 +238,8 @@ Item {
                    anchors.fill: parent
                    onClicked: {
 
-                       MyTrans.updateLanguage(MyLang.GER)
+                       MyTrans.updateLanguage(2)
+                       mySettings.setlng(2);
                    }
                }
 }

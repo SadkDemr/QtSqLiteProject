@@ -2,12 +2,12 @@ import QtQuick 2.5
 //import QtQuick.Controls 1.4
 //import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.1 //RowLayout
-import QtQuick.Dialogs 1.2 //
-import QtQuick.Controls.Styles 1.3
-import QtQuick.Controls.Private 1.0
+import QtQuick.Dialogs 1.2 //TableView
+//import QtQuick.Controls.Styles 1.3
+//import QtQuick.Controls.Private 1.0
 import QtQuick.Controls 1.3
 import QtQuick.Controls 2.12
-import QtQuick.Controls 2.3 as QQC2
+//import QtQuick.Controls 2.3 as QQC2
 
 Item {
     property var vote
@@ -46,7 +46,8 @@ Item {
         }
 
 
-
+//Verileri siralama islemi
+//Data sorting process
 
         TableViewColumn {
 
@@ -87,7 +88,8 @@ Item {
 
         }
         model: myModel
-
+//Gorselleri goruntuleme
+//View Image
         Component {
             id: imageDelegate
               Item {
@@ -211,7 +213,8 @@ Item {
             border.color: "green"
         }
 
-
+//Secilen verinin degistirilmesi
+//update selected data
         contentItem: RowLayout{
             id: rowLayout
             Text{ text: qsTr("Original_title") + MyTrans.emptyString

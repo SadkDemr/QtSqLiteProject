@@ -10,7 +10,6 @@
 
 #include "database.h"
 #include "listmodel.h"
-#include "MyLang.h"
 #include "MyTranslator.h"
 #include "mysamplesettings.h"
 
@@ -26,16 +25,23 @@ int main(int argc, char *argv[])
 
     MyTranslator mTrans(&app);
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty("MyTrans",(QObject*)&mTrans);
+
+    qDebug() << "mSettings->lng() : " << mSettings->lng();
+    mTrans.updateLanguage(mSettings->lng());
+
+
+
     DataBase database;
     database.connectToDataBase();
-    qmlRegisterType<MyLang>("MyLang", 1, 0, "MyLang");
+
 
     ListModel *model = new ListModel();
 
     engine.rootContext()->setContextProperty("myModel", model);
     engine.rootContext()->setContextProperty("database", &database);
     engine.rootContext()->setContextProperty("mySettings", mSettings);
+    engine.rootContext()->setContextProperty("MyTrans",(QObject*)&mTrans);
+
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 

@@ -17,10 +17,15 @@ QVariant ListModel::data(const QModelIndex & index, int role) const {
     // Sayı rolüne göre sütun numarasını tanımlayın
     // Define column number by number role
     int columnId = role - Qt::UserRole - 1;
+//    qDebug()<<"User Role"<< Qt::UserRole;
+//    qDebug()<<"Column Id:"<< columnId;
+//    qDebug()<<"Role:"<< role;
+
 
     // Column id kullanarak dizi oluşturma
     // Creating array using column id
     QModelIndex modelIndex = this->index(index.row(), columnId);
+//    qDebug()<<"Index:"<< index;
 
     return QSqlQueryModel::data(modelIndex, Qt::DisplayRole);
 }

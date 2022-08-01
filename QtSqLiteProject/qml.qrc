@@ -11,5 +11,12 @@
         <file>image/tr.png</file>
         <file>image/ger.png</file>
         <file>image/dasal.jpg</file>
+        <file>Deneme.qml</file>
+        <file>image/database-add-icon.png</file>
+        <file>image/icons8-choose-font-90.png</file>
+        <file>image/icons8-setting-64.png</file>
+        <file>image/icons8-text-color-64.png</file>
+        <file>image/programming.png</file>
+        <file>image/settings.png</file>
     </qresource>
 </RCC>

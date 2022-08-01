@@ -6,7 +6,9 @@
 #include <QApplication>
 #include <QQuickView>
 #include <QTranslator>
+#include <QSettings>
 #include "MyLang.h"
+#include "mysamplesettings.h"
 
 class MyTranslator : public QObject
 {
@@ -24,21 +26,22 @@ signals:
 public slots:
     void updateLanguage(int lang){
         switch(lang){
-        case MyLang::ENG:
+        case 0:
             mTranslator.load("HelloWorld_ENG", ":/translator");
             mApp->installTranslator(&mTranslator);
             break;
-        case MyLang::TR:
+        case 1:
             mTranslator.load("HelloWorld_TR", ":/translator");
             mApp->installTranslator(&mTranslator);
             break;
-        case MyLang::GER:
+        case 2:
             mTranslator.load("HelloWorld_GER", ":/translator");
             mApp->installTranslator(&mTranslator);
             break;
         }
         emit languageChanged();
     }
+
 
 private:
     QApplication* mApp;

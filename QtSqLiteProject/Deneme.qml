@@ -1,288 +1,458 @@
-import QtQuick 2.2
-import QtQuick.Window 2.2
-import QtQuick.Controls 1.4
+import QtQuick 2.5
+import QtQuick.Controls 1.4 //TextField
+import QtQuick.Layouts 1.1 //ColumnLayout
+import QtQuick.Dialogs 1.2 //FileDialog
+//import Qt.labs.settings 1.0
+//import QtQuick.Controls 1.2
+import QtQuick.Controls.Styles 1.2 //TextFieldStyle
 
-ApplicationWindow {
-    id: window
-    visible: true
-    title: "Table View Example"
+Item {
+    property var vote
+    property var yearss
+    property var monthss
+    property var days
+    property var date
 
-    TableView {
-        y: 70
-        width: 500
 
-        TableViewColumn {
-            role: "title"
-            title: "Title"
-            width: 100
+    /*
+    This is a UI file (.ui.qml) that is intended to be edited in Qt Design Studio only.
+    It is supposed to be strictly declarative and only uses a subset of QML. If you edit
+    this file manually, you might introduce QML code that is not supported by Qt Design Studio.
+    Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on .ui.qml files.
+    */
+
+    Rectangle {
+
+        color:"#dddddd"
+        height: 600
+        width: 750
+        border.width: 2
+        anchors.centerIn: parent
+
+        TextField {
+            id: original_titleField
+            x: 138
+            y: 17
+            width: 373
+            height: 54
+            placeholderText: qsTr("Original Title")
+            font.pointSize: 18
         }
-        TableViewColumn {
-            role: "author"
-            title: "Author"
-            width: 100
-        }
 
-        TableViewColumn{
-            width: 300
-            delegate: Text {
-                text: model.title + " "  + model.author
-                font.family: "Courier New"
+        ComboBox {
+            id: comboBox3
+            x: 138
+            y: 138
+            width: 373
+            height: 35
+
+            Text {
+                id: text4
+                x: 160
+                y: 10
+                width: 103
+                height: 16
+                text: qsTr("Vote")
                 font.pixelSize: 18
-                color: "red"
+            }
+            model: ListModel {
+                id: vote_averageField
+                ListElement {
+                    text: ""
+                }
+                ListElement {
+                    text: "0"
+                }
+                ListElement {
+                    text: "1"
+                }
+                ListElement {
+                    text: "2"
+                }
+                ListElement {
+                    text: "3"
+                }
+                ListElement {
+                    text: "4"
+                }
+                ListElement {
+                    text: "5"
+                }
+                ListElement {
+                    text: "6"
+                }
+                ListElement {
+                    text: "7"
+                }
+                ListElement {
+                    text: "8"
+                }
+                ListElement {
+                    text: "9"
+                }
+                ListElement {
+                    text: "10"
+                }
+            }
+            onCurrentIndexChanged:{
+                var combox = vote_averageField.get(currentIndex).text
+                vote=combox
+                console.debug(combox)
+        }
+        }
+
+        TextField {
+            id: taglineField
+            x: 138
+            y: 188
+            width: 373
+            height: 51
+            placeholderText: qsTr("Tagline")
+            font.pointSize: 18
+        }
+
+        ComboBox {
+            id: comboBox5
+            x: 138
+            y: 88
+            width: 114
+            height: 35
+
+            Text {
+                id: text1
+                x: 38
+                y: 10
+                width: 70
+                height: 19
+                text: qsTr("Years")
+                font.pixelSize: 12
+            }
+
+            model: ListModel {
+                id: years
+                ListElement {
+                    text: ""
+                }
+                ListElement {
+                    text: "2000"
+                }
+                ListElement {
+                    text: "2001"
+                }
+                ListElement {
+                    text: "2002"
+                }
+                ListElement {
+                    text: "2003"
+                }
+                ListElement {
+                    text: "2004"
+                }
+                ListElement {
+                    text: "2005"
+                }
+                ListElement {
+                    text: "2006"
+                }
+                ListElement {
+                    text: "2007"
+                }
+                ListElement {
+                    text: "2008"
+                }
+                ListElement {
+                    text: "2009"
+                }
+                ListElement {
+                    text: "2010"
+                }
+                ListElement {
+                    text: "2011"
+                }
+                ListElement {
+                    text: "2012"
+                }
+                ListElement {
+                    text: "2013"
+                }
+                ListElement {
+                    text: "2014"
+                }
+                ListElement {
+                    text: "2015"
+                }
+                ListElement {
+                    text: "2016"
+                }
+                ListElement {
+                    text: "2017"
+                }
+                ListElement {
+                    text: "2018"
+                }
+                ListElement {
+                    text: "2019"
+                }
+                ListElement {
+                    text: "2020"
+                }
+                ListElement {
+                    text: "2021"
+                }
+                ListElement {
+                    text: "2022"
+                }
+            }
+            onCurrentIndexChanged:{
+                yearss = years.get(currentIndex).text
+                console.debug(yearss)
             }
         }
 
-        onClicked: {
-            leftText.text = libraryModel.get(row).title + " " + libraryModel.get(row).author;
-            centerText.text = libraryModel.get(row).title;
-            rightText.text = libraryModel.get(row).author;
+
+        ComboBox {
+            id: comboBox6
+            x: 268
+            y: 88
+            width: 114
+            height: 35
+            Text {
+                id: text2
+                x: 38
+                y: 10
+                width: 70
+                height: 19
+                text: qsTr("Month")
+                font.pixelSize: 12
+            }
+            model: ListModel {
+                id: months
+                ListElement {
+                    text: ""
+                }
+                ListElement {
+                    text: "01"
+                }
+                ListElement {
+                    text: "02"
+                }
+                ListElement {
+                    text: "03"
+                }
+                ListElement {
+                    text: "04"
+                }
+                ListElement {
+                    text: "05"
+                }
+                ListElement {
+                    text: "06"
+                }
+                ListElement {
+                    text: "07"
+                }
+                ListElement {
+                    text: "08"
+                }
+                ListElement {
+                    text: "09"
+                }
+                ListElement {
+                    text: "10"
+                }
+                ListElement {
+                    text: "11"
+                }
+                ListElement {
+                    text: "12"
+                }
+            }
+            onCurrentIndexChanged:{
+                monthss = months.get(currentIndex).text
+                console.debug(monthss)
+            }
         }
 
-        model: libraryModel
+        ComboBox {
+            id: comboBox7
+            x: 397
+            y: 88
+            width: 114
+            height: 35
+            Text {
+                id: text3
+                x: 38
+                y: 10
+                width: 70
+                height: 19
+                text: qsTr("Day")
+                font.pixelSize: 12
+            }
+            model: ListModel {
+                id: day
+                ListElement {
+                    text: ""
+                }
+                ListElement {
+                    text: "01"
+                }
+                ListElement {
+                    text: "02"
+                }
+                ListElement {
+                    text: "03"
+                }
+                ListElement {
+                    text: "04"
+                }
+                ListElement {
+                    text: "05"
+                }
+                ListElement {
+                    text: "06"
+                }
+                ListElement {
+                    text: "07"
+                }
+                ListElement {
+                    text: "08"
+                }
+                ListElement {
+                    text: "09"
+                }
+                ListElement {
+                    text: "10"
+                }
+                ListElement {
+                    text: "11"
+                }
+                ListElement {
+                    text: "12"
+                }
+                ListElement {
+                    text: "13"
+                }
+                ListElement {
+                    text: "14"
+                }
+                ListElement {
+                    text: "15"
+                }
+                ListElement {
+                    text: "16"
+                }
+                ListElement {
+                    text: "17"
+                }
+                ListElement {
+                    text: "18"
+                }
+                ListElement {
+                    text: "19"
+                }
+                ListElement {
+                    text: "20"
+                }
+                ListElement {
+                    text: "21"
+                }
+                ListElement {
+                    text: "22"
+                }
+                ListElement {
+                    text: "23"
+                }
+                ListElement {
+                    text: "24"
+                }
+                ListElement {
+                    text: "25"
+                }
+                ListElement {
+                    text: "26"
+                }
+                ListElement {
+                    text: "27"
+                }
+                ListElement {
+                    text: "30"
+                }
+                ListElement {
+                    text: "31"
+                }
+            }
+            onCurrentIndexChanged:{
+                days = day.get(currentIndex).text
+                console.debug(days)
+                date = yearss + "-" + monthss + "-" + days
+                console.debug(date)
+            }
+        }
 
-        ListModel {
-            id: libraryModel
-            ListElement {
-                title: "A Masterpiece"
-                author: "Gabriel"
+        Button {
+            id: button1
+            x: 138
+            y: 207
+            width: 373
+            height: 46
+            text: qsTr("Image Select")
+            onClicked: {
+            fileDialog.open()
+               }
+
+        }
+
+        FileDialog {
+            id: fileDialog
+            title: qsTr("Please choose a file") + MyTrans.emptyString
+            folder: shortcuts.home
+            nameFilters: [ "Image files (*.jpg *.png)", "All files (*)" ]
+            onAccepted: {
+                console.log("You chose: " + fileDialog.fileUrl)
             }
-            ListElement {
-                title: "Brilliance"
-                author: "Jens"
+            onRejected: {
+                console.log("Canceled")
+
             }
-            ListElement {
-                title: "Outstanding"
-                author: "Frederik"
+            Component.onCompleted: visible = false
+        }
+
+        BorderImage {
+            id: borderImage
+            x: 259
+            y: 252
+            width: 132
+            height: 114
+            source: fileDialog.fileUrl
+        }
+
+
+        Button {
+            id: button
+            x: 138
+            y: 383
+            width: 373
+            height: 67
+            Text {
+               id: name
+               anchors.centerIn: parent
+               text: qsTr("Insert")
+               font { family: mySettings.fontType; pointSize: 15; }
             }
+            onClicked: {
+                dialogKayit.open()
+            }
+
         }
     }
 
-    TextField {
-        id:  leftText
+    /*##^##
+    Designer {
+        D{i:0;autoSize:true;height:480;width:640}
     }
+    ##^##*/
 
-    TextField {
-        id:  centerText
-        anchors.left: leftText.right
-    }
 
-    TextField {
-        id:  rightText
-        anchors.left: centerText.right
-    }
+
+
 }
-
-
-
-//    TextField
-//    {
-//        id: blah;
-//        font { family: "Arial"; pointSize: 32; }
-//        style: TextFieldStyle
-//        {
-//        textColor: "#000";
-//        background: Rectangle
-//        {
-//        color: "#FFF";
-//        border.color: "#999";
-//        border.width: 1;
-//        radius: 4
-//    }
-//    }
-//    }
-
-
-
-
-
-
-
-
-
-
-//    Calendar {
-//        id: calendar
-//        anchors.centerIn: parent
-//        frameVisible: true
-//        weekNumbersVisible: true
-//        // selectedDate: new Date(2014, 0, 1)
-//        focus: true
-//        property var startDate: undefined
-//        property var stopDate: undefined
-
-//        style: CalendarStyle {
-//            dayDelegate: Item {
-//                readonly property color sameMonthDateTextColor: "#444"
-//                readonly property color selectedDateColor: "#3778d0"
-//                readonly property color selectedDateTextColor: "white"
-//                readonly property color differentMonthDateTextColor: "#bbb"
-//                readonly property color invalidDatecolor: "#dddddd"
-//                property var dateOnFocus: styleData.date
-
-
-
-//                Rectangle {
-//                    anchors.fill: parent
-//                    border.color: "transparent"
-//                    color: styleData.date !== undefined && styleData.selected ? selectedDateColor : "transparent"
-
-//                }
-
-//                Rectangle{
-//                    id:fl
-//                    anchors.fill: parent
-//                    property bool flag: false
-//                    color: ((dateOnFocus>calendar.startDate) && (dateOnFocus< calendar.stopDate))?"#55555555":
-//                           (calendar.startDate !==undefined && dateOnFocus.getTime()===calendar.startDate.getTime())?"#3778d0":"transparent"
-//                }
-
-
-//                MouseArea{
-//                    anchors.fill: parent
-//                    propagateComposedEvents: true
-//                    onPressed: {
-
-//                        if(calendar.startDate===undefined){
-//                            calendar.startDate=styleData.date
-//                        }
-//                        else if(calendar.stopDate=== undefined){
-//                            calendar.stopDate=styleData.date
-//                        }
-//                        else{
-//                            calendar.startDate=styleData.date
-//                            calendar.stopDate= undefined
-//                        }
-
-//                        if(calendar.stopDate<=calendar.startDate){
-//                            calendar.startDate=styleData.date
-//                            calendar.stopDate= undefined
-//                        }
-
-//                        mouse.accepted = false
-//                    }
-//                }
-
-
-//                Label {
-//                    id: dayDelegateText
-//                    text: styleData.date.getDate()
-//                    anchors.centerIn: parent
-//                    color: {
-//                        var color = invalidDatecolor;
-//                        if (styleData.valid) {
-//                            // Date is within the valid range.
-//                            color = styleData.visibleMonth ? sameMonthDateTextColor : differentMonthDateTextColor;
-//                            if (styleData.selected) {
-//                                color = selectedDateTextColor;
-//                            }
-//                            else if (dateOnFocus.getTime()===calendar.startDate.getTime()) {
-//                                color = selectedDateTextColor;
-//                            }
-//                        }
-//                        color;
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-
-
-//        id: window
-//        width: 320
-//        height: 260
-//        visible: true
-
-//        Rectangle{
-//            id:rectİd
-//            color:mySettings.sampleColor
-//            Text {
-//                id: name
-//                text: qsTr("Hello")
-//                font.family: "Algerian"
-//                font.pointSize:15
-//            }
-//        }
-//        Column{
-//            spacing: 20
-//            anchors.centerIn: parent
-//            MenuBar {
-//                 Menu {
-//                     title: qsTr("&Nummber")
-//                     Action { text: qsTr("1") }
-//                     Action { text: qsTr("2") }
-//                     Action { text: qsTr(3) }
-//                     Action { text: qsTr(4) }
-//                     MenuSeparator { }
-//                     Action { text: qsTr("&Quit") }
-//                 }
-//                 Menu {
-//                     title: qsTr("&Edit")
-//                     Action { text: qsTr("Cu&t") }
-//                     Action { text: qsTr("&Copy") }
-//                     Action { text: qsTr("&Paste") }
-//                 }
-//                 Menu {
-//                     title: qsTr("&Help")
-//                     Action { text: qsTr("&About") }
-//                 }
-//             }
-
-
-
-//        }
-
-
-
-
-
-
-
-
-//ApplicationWindow {
-//    visible: true
-
-//    Universal.theme: Universal.Dark
-//    Universal.accent: Universal.Violet
-
-//    Column {
-//        anchors.centerIn: parent
-
-//        RadioButton { text: qsTr("Small") }
-//        RadioButton { text: qsTr("Medium");  checked: true }
-//        RadioButton { text: qsTr("Large") }
-//    }
-//}
-//ListView {
-//           id: listView
-//           anchors.fill: parent
-//           topMargin: 48
-//           leftMargin: 48
-//           bottomMargin: 48
-//           rightMargin: 48
-//           spacing: 20
-//           model: myModel
-//           delegate: ItemDelegate {
-//               text: database
-//               width: listView.width - listView.leftMargin - listView.rightMargin
-//               height: avatar.implicitHeight
-//               leftPadding: avatar.implicitWidth + 32
-
-//               Image {
-//                   id: avatar
-//                   source: "qrc:/" + database.replace(" ", "_") + ".png" + ".jpg"
-
-//               }
-//           }
-//       }
-
-
-
-
-
-
-
-
-
-
-

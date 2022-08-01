@@ -3,7 +3,6 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.4
 import QtQuick.Dialogs 1.3
 //import Qt.labs.settings 1.0
-import MyLang 1.0
 
 ApplicationWindow {
     width: maximumWidth
@@ -58,10 +57,6 @@ ApplicationWindow {
 
 
     }
-
-
-
-
     StackView{
         id : mStackId
         anchors.fill: parent

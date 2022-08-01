@@ -2,6 +2,55 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_GB" sourcelanguage="tr_TR">
 <context>
+    <name>Deneme</name>
+    <message>
+        <location filename="../Deneme.qml" line="38"/>
+        <source>Original Title</source>
+        <translation>Original Title</translation>
+    </message>
+    <message>
+        <location filename="../Deneme.qml" line="55"/>
+        <source>Vote</source>
+        <translation>Vote</translation>
+    </message>
+    <message>
+        <location filename="../Deneme.qml" line="110"/>
+        <source>Tagline</source>
+        <translatorcomment>Tagline</translatorcomment>
+        <translation>Tagline</translation>
+    </message>
+    <message>
+        <location filename="../Deneme.qml" line="127"/>
+        <source>Years</source>
+        <translation>Years</translation>
+    </message>
+    <message>
+        <location filename="../Deneme.qml" line="225"/>
+        <source>Month</source>
+        <translation>Month</translation>
+    </message>
+    <message>
+        <location filename="../Deneme.qml" line="288"/>
+        <source>Day</source>
+        <translation>Day</translation>
+    </message>
+    <message>
+        <location filename="../Deneme.qml" line="398"/>
+        <source>Image Select</source>
+        <translation>Image Select</translation>
+    </message>
+    <message>
+        <location filename="../Deneme.qml" line="407"/>
+        <source>Please choose a file</source>
+        <translation>Please choose a file</translation>
+    </message>
+    <message>
+        <location filename="../Deneme.qml" line="439"/>
+        <source>Insert</source>
+        <translation>Inserts</translation>
+    </message>
+</context>
+<context>
     <name>Insert</name>
     <message>
         <source>original_title</source>
@@ -24,52 +73,86 @@
         <translation type="vanished">image</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="54"/>
         <source>Original_title :</source>
-        <translation>Original_title :</translation>
+        <translation type="vanished">Original_title :</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="79"/>
         <source>Release_date :</source>
-        <translation>Release_date :</translation>
+        <translation type="vanished">Release_date :</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="197"/>
         <source>Vote_average :</source>
-        <translation>Vote_average :</translation>
+        <translation type="vanished">Vote_average :</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="232"/>
         <source>Tagline             :</source>
-        <translation>Tagline             :</translation>
+        <translation type="vanished">Tagline             :</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="259"/>
         <source>Image               :</source>
-        <translation>Image               :</translation>
+        <translation type="vanished">Image               :</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="269"/>
+        <location filename="../Insert.qml" line="47"/>
+        <source>Original Title</source>
+        <translation>Original Title</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="63"/>
+        <source>Years</source>
+        <translation>Years</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="110"/>
+        <source>Month</source>
+        <translation>Month</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="145"/>
+        <source>Day</source>
+        <translation>Day</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="202"/>
+        <source>Vote</source>
+        <translation>Vote</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="235"/>
+        <source>Tagline</source>
+        <translation>Tagline</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="247"/>
         <source>Image Selecet</source>
         <translation>Image Selecet</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="284"/>
+        <location filename="../Insert.qml" line="262"/>
         <source>Please choose a file</source>
         <translation>Please choose a file</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="319"/>
-        <source>Add</source>
-        <translation>Add</translation>
+        <location filename="../Insert.qml" line="284"/>
+        <source>Image Area</source>
+        <translation>Image Area</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="331"/>
+        <location filename="../Insert.qml" line="297"/>
+        <source>Insert</source>
+        <translation>Insert</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="vanished">Add</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="309"/>
         <source>Record</source>
         <translation>Record</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="332"/>
+        <location filename="../Insert.qml" line="310"/>
         <source>Complete the Registration Process?</source>
         <translation>Complete the Registration Process?</translation>
     </message>
@@ -99,17 +182,17 @@
     <message>
         <location filename="../MainPage.qml" line="62"/>
         <source>Original_Title</source>
-        <translation>Original_Title</translation>
+        <translation>Original Title</translation>
     </message>
     <message>
         <location filename="../MainPage.qml" line="67"/>
         <source>Release_Date</source>
-        <translation>Release_Date</translation>
+        <translation>Release Date</translation>
     </message>
     <message>
         <location filename="../MainPage.qml" line="73"/>
         <source>Vote_Average</source>
-        <translation>Vote_Average</translation>
+        <translation>Vote Average</translation>
     </message>
     <message>
         <location filename="../MainPage.qml" line="78"/>
@@ -153,17 +236,17 @@
     <message>
         <location filename="../MainPage.qml" line="217"/>
         <source>Original_title</source>
-        <translation>Original_title</translation>
+        <translation>Original Title</translation>
     </message>
     <message>
         <location filename="../MainPage.qml" line="226"/>
         <source>Release_date</source>
-        <translation>Release_date</translation>
+        <translation>Release Date</translation>
     </message>
     <message>
         <location filename="../MainPage.qml" line="232"/>
         <source> Vote_average</source>
-        <translation> Vote_average</translation>
+        <translation> Vote Average</translation>
     </message>
     <message>
         <location filename="../MainPage.qml" line="247"/>
@@ -231,7 +314,7 @@
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="../main.qml" line="53"/>
+        <location filename="../main.qml" line="65"/>
         <source>Quit</source>
         <translation>Quit</translation>
     </message>

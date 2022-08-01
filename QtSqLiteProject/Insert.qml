@@ -22,67 +22,47 @@ Item {
         height: parent.height
         width: parent.width
 
-//        Image {
-//            id: dasal
-//            source: "qrc:/image/dasal.jpg"
-//            width: 300
-//            height: 300
+        Image {
+            id: dasal
+            source: "qrc:/image/dasal.jpg"
+            width: 300
+            height: 300
 
-//        }
+        }
 
         Rectangle{
             color:"#dddddd"
             height: 600
             width: 750
+            border.width: 2
             anchors.centerIn: parent
-        }
-        ColumnLayout {
-            id: rowLayout
-            anchors.centerIn: parent
-//            anchors.top: parent.top
-//            anchors.fill: parent
-//            anchors.left: parent.left
-//            anchors.right: parent.right
-
-            anchors.margins: 5
 
 
-            spacing: 10
-            RowLayout{
-                Text{
-                    id: name
-                    text: qsTr("Original_title :") + MyTrans.emptyString
-                    font.pointSize: 20
-                    font.family: mySettings.fontType
-
-                }
                 TextField {
                     id: original_titleField
-                    font { family: "Arial"; pointSize: 20; }
-                    style: TextFieldStyle
-                    {
-                    textColor: "#000";
-                    background: Rectangle
-                    {
-                    color: "#FFF";
-                    border.color: "#999";
-                    border.width: 2;
-                    radius: 4
-                }
-                }
+                    x: 138
+                    y: 17
+                    width: 373
+                    height: 54
+                    placeholderText: qsTr("Original Title")+ MyTrans.emptyString
+                    font.pointSize: 18
                 }
 
-            }
-
-           RowLayout{
-                Text {id: textId1
-                    text: qsTr("Release_date :") + MyTrans.emptyString
-                    font.pointSize: 20
-                    font.family: mySettings.fontType
-                }
-                //TextField { id: release_dateField}
                 ComboBox {
-                    currentIndex: 0
+                    x: 138
+                    y: 88
+                    width: 114
+                    height: 35
+
+                    Text {
+                        id: text1
+                        x: 38
+                        y: 10
+                        width: 70
+                        height: 19
+                        text: qsTr("Years")+ MyTrans.emptyString
+                        font.pixelSize: 12
+                    }
                     model: ListModel {
                         id: years
                         ListElement { text: "" }
@@ -111,15 +91,25 @@ Item {
                         ListElement { text: "2022" }
                     }
 
-                    width: 200
-
                     onCurrentIndexChanged:{
                         yearss = years.get(currentIndex).text
                         console.debug(yearss)
                     }
                 }
                 ComboBox {
-                    currentIndex: 0
+                    x: 268
+                    y: 88
+                    width: 114
+                    height: 35
+                    Text {
+                        id: text2
+                        x: 38
+                        y: 10
+                        width: 70
+                        height: 19
+                        text: qsTr("Month")+ MyTrans.emptyString
+                        font.pixelSize: 12
+                    }
                     model: ListModel {
                         id: months
                         ListElement { text: "" }
@@ -136,16 +126,25 @@ Item {
                         ListElement { text: "11" }
                         ListElement { text: "12" }
                     }
-
-                    width: 200
-                    height: 200
                     onCurrentIndexChanged:{
                         monthss = months.get(currentIndex).text
                         console.debug(monthss)
                     }
                 }
                 ComboBox {
-                    currentIndex: 0
+                    x: 397
+                    y: 88
+                    width: 114
+                    height: 35
+                    Text {
+                        id: text3
+                        x: 38
+                        y: 10
+                        width: 70
+                        height: 19
+                        text: qsTr("Day")+ MyTrans.emptyString
+                        font.pixelSize: 12
+                    }
                     model: ListModel {
                         id: day
                         ListElement { text: "" }
@@ -179,9 +178,7 @@ Item {
                         ListElement { text: "30" }
                         ListElement { text: "31" }
 
-                    }
-                    height: 20
-                    width: 20
+                    }       
                     onCurrentIndexChanged:{
                         days = day.get(currentIndex).text
                         console.debug(days)
@@ -189,18 +186,22 @@ Item {
                         console.debug(date)
                     }
                 }
-            }
 
-
-            RowLayout{
-                Text {
-                    text: qsTr("Vote_average :") + MyTrans.emptyString
-                    font.pointSize: 20
-                    font.family: mySettings.fontType
-                }
-                //TextField { id: vote_averageField}
                 ComboBox {
-                    currentIndex: 0
+                    x: 138
+                    y: 138
+                    width: 373
+                    height: 35
+
+                    Text {
+                        id: text4
+                        x: 160
+                        y: 10
+                        width: 103
+                        height: 16
+                        text: qsTr("Vote")+ MyTrans.emptyString
+                        font.pixelSize: 18
+                    }
                     model: ListModel {
                         id: vote_averageField
                         ListElement { text: "" }
@@ -216,54 +217,31 @@ Item {
                         ListElement { text: "9" }
                         ListElement { text: "10" }
                     }
-
-
-                    width: 200
                     onCurrentIndexChanged:{
                         var combox = vote_averageField.get(currentIndex).text
                         vote=combox
                         console.debug(combox)
                 }
             }
-            }
 
-            RowLayout{
-                Text {
-                    text: qsTr("Tagline             :") + MyTrans.emptyString
-                    font.pointSize: 20
-                    font.family: mySettings.fontType
-                }
+
 
                 TextField {
                     id: taglineField
-                    font { family: "Arial"; pointSize: 20; }
-                    style: TextFieldStyle
-                    {
-                    textColor: "#000";
-                    background: Rectangle
-                    {
-                    color: "#FFF";
-                    border.color: "#999";
-                    border.width: 2;
-                    radius: 4
-                }
-                }
+                    x: 138
+                    y: 188
+                    width: 373
+                    height: 51
+                    placeholderText: qsTr("Tagline")+ MyTrans.emptyString
+                    font.pointSize: 18
 
-                }
-
-            }
-
-
-            RowLayout{
-                Text{
-                    text: qsTr("Image               :") + MyTrans.emptyString
-                    font.pointSize: 20
-                    font.family: mySettings.fontType
                 }
 
                 Button{
-                Layout.preferredWidth: parent.width * 0.6
-                Layout.preferredHeight:parent.height * 0.9
+                    x: 138
+                    y: 250
+                    width: 373
+                    height: 46
                 Text {
                     anchors.centerIn: parent
                     text: qsTr("Image Selecet") + MyTrans.emptyString
@@ -276,7 +254,7 @@ Item {
                    }
                 }
 
-            }
+
 
 
             FileDialog {
@@ -294,29 +272,29 @@ Item {
                 Component.onCompleted: visible = false
             }
 
-            Rectangle{
-                id:imageRec
-                color: "white"
-                height: 200
-                width: 600
-                border.width: 2;
-                Image {
-                    id: fileDialogUrl
+            BorderImage {
+                id: borderImage
+                x: 259
+                y: 300
+                width: 132
+                height: 114
+                Text {
+                    id: name
                     anchors.centerIn: parent
-                    height: 200
-                    width: 250
-                    source: fileDialog.fileUrl
+                    text: qsTr("Image Area")+ MyTrans.emptyString
+                    font.pointSize: 12
                 }
-
-
+                source: fileDialog.fileUrl
             }
 
             Button {
-                Layout.preferredWidth: parent.width * 1
-                Layout.preferredHeight:parent.height * 0.2
+                x: 138
+                y: 450
+                width: 373
+                height: 67
                 Text {
                     anchors.centerIn: parent
-                    text: qsTr("Add") + MyTrans.emptyString
+                    text: qsTr("Insert") + MyTrans.emptyString
                     font { family: mySettings.fontType; pointSize: 15; }
                 }
 
@@ -333,6 +311,8 @@ Item {
                 icon: StandardIcon.Warning
                 standardButtons: StandardButton.Yes | StandardButton.No
                 onYes: {
+                    //girilen verileri sirasiyle ListModel deki rollere ListModel'den de Database ekleme işlemi yapiliyor.
+                    //entered data goes to ListModel respectively,
                     if(database.inserIntoTable(original_titleField.text , date, taglineField.text, vote, fileDialog.fileUrl))
                     {
                         console.log("Record Successfully")
@@ -356,9 +336,16 @@ Item {
                 }
 
                 }
+            Image {
+                id: insertIcon
+                source: "qrc:/image/database-add-icon.png"
+                width: 200
+                height: 200
+                x:540
+                y:20
+            }
 
-                }
-
+}
 
             }
 

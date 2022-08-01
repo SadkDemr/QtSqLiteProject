@@ -2,6 +2,54 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="tr_TR">
 <context>
+    <name>Deneme</name>
+    <message>
+        <location filename="../Deneme.qml" line="38"/>
+        <source>Original Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Deneme.qml" line="55"/>
+        <source>Vote</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Deneme.qml" line="110"/>
+        <source>Tagline</source>
+        <translation type="unfinished">Slogan</translation>
+    </message>
+    <message>
+        <location filename="../Deneme.qml" line="127"/>
+        <source>Years</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Deneme.qml" line="225"/>
+        <source>Month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Deneme.qml" line="288"/>
+        <source>Day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Deneme.qml" line="398"/>
+        <source>Image Select</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Deneme.qml" line="407"/>
+        <source>Please choose a file</source>
+        <translation type="unfinished">Lütfen bir dosya seçin</translation>
+    </message>
+    <message>
+        <location filename="../Deneme.qml" line="439"/>
+        <source>Insert</source>
+        <translation type="unfinished">Ekleme</translation>
+    </message>
+</context>
+<context>
     <name>Insert</name>
     <message>
         <source>original_title</source>
@@ -24,52 +72,86 @@
         <translation type="vanished">poster</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="54"/>
         <source>Original_title :</source>
-        <translation>Orjinal_Başlık:</translation>
+        <translation type="vanished">Orjinal_Başlık:</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="79"/>
         <source>Release_date :</source>
-        <translation>Yayın_Tarihi :</translation>
+        <translation type="vanished">Yayın_Tarihi :</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="197"/>
         <source>Vote_average :</source>
-        <translation>Oy_Ortalaması :</translation>
+        <translation type="vanished">Oy_Ortalaması :</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="232"/>
         <source>Tagline             :</source>
-        <translation>Slogan              :</translation>
+        <translation type="vanished">Slogan              :</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="259"/>
         <source>Image               :</source>
-        <translation>Görsel              :</translation>
+        <translation type="vanished">Görsel              :</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="269"/>
+        <location filename="../Insert.qml" line="47"/>
+        <source>Original Title</source>
+        <translation>Orjinal Başlık</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="63"/>
+        <source>Years</source>
+        <translation>Yıl</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="110"/>
+        <source>Month</source>
+        <translation>Ay</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="145"/>
+        <source>Day</source>
+        <translation>Gün</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="202"/>
+        <source>Vote</source>
+        <translation>Oy</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="235"/>
+        <source>Tagline</source>
+        <translation>Slogan</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="247"/>
         <source>Image Selecet</source>
         <translation>Görsel Seçiniz</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="284"/>
+        <location filename="../Insert.qml" line="262"/>
         <source>Please choose a file</source>
         <translation>Lütfen bir dosya seçin</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="319"/>
-        <source>Add</source>
+        <location filename="../Insert.qml" line="284"/>
+        <source>Image Area</source>
+        <translation>Görsel Alanı</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="297"/>
+        <source>Insert</source>
         <translation>Ekleme</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="331"/>
+        <source>Add</source>
+        <translation type="vanished">Ekleme</translation>
+    </message>
+    <message>
+        <location filename="../Insert.qml" line="309"/>
         <source>Record</source>
         <translation>Kayıt</translation>
     </message>
     <message>
-        <location filename="../Insert.qml" line="332"/>
+        <location filename="../Insert.qml" line="310"/>
         <source>Complete the Registration Process?</source>
         <translation>Kayıt İşlemi Tamamlansın mı?</translation>
     </message>
@@ -99,17 +181,17 @@
     <message>
         <location filename="../MainPage.qml" line="62"/>
         <source>Original_Title</source>
-        <translation>Orjinal_Başlık</translation>
+        <translation>Orjinal Başlık</translation>
     </message>
     <message>
         <location filename="../MainPage.qml" line="67"/>
         <source>Release_Date</source>
-        <translation>Yayın_Tarihi</translation>
+        <translation>Yayın Tarihi</translation>
     </message>
     <message>
         <location filename="../MainPage.qml" line="73"/>
         <source>Vote_Average</source>
-        <translation>Oy_Ortalaması</translation>
+        <translation>Oy Ortalaması</translation>
     </message>
     <message>
         <location filename="../MainPage.qml" line="78"/>
@@ -153,17 +235,17 @@
     <message>
         <location filename="../MainPage.qml" line="217"/>
         <source>Original_title</source>
-        <translation>Orjinal_Başlık</translation>
+        <translation>Orjinal Başlık</translation>
     </message>
     <message>
         <location filename="../MainPage.qml" line="226"/>
         <source>Release_date</source>
-        <translation>Yayın_Tarihi</translation>
+        <translation>Yayın Tarihi</translation>
     </message>
     <message>
         <location filename="../MainPage.qml" line="232"/>
         <source> Vote_average</source>
-        <translation> Oy_Ortalaması</translation>
+        <translation> Oy Ortalaması</translation>
     </message>
     <message>
         <location filename="../MainPage.qml" line="247"/>
@@ -231,7 +313,7 @@
         <translation>Ayarlar</translation>
     </message>
     <message>
-        <location filename="../main.qml" line="53"/>
+        <location filename="../main.qml" line="65"/>
         <source>Quit</source>
         <translation>Çıkış</translation>
     </message>
