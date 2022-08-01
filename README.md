@@ -6,7 +6,7 @@
 In my project, my goal is to display, sort, delete, update and insert a database containing int, string and image. And generating all of them in the Qt Creator environment.
 
 ## Main:
-![Main](https://github.com/SadkDemr/QtSqLiteProject/blob/main/QtSqLiteProject/Screenshot/Screenshot%202022-07-28%20131716.png?raw=true)
+![Main](https://github.com/SadkDemr/QtSqLiteProject/blob/main/QtSqLiteProject/Screenshot/main.png?raw=true)
 
 On this page, we have sorted and displayed the data we pulled from the database by integrating it into Qml.
 
@@ -25,7 +25,7 @@ On this page, we have sorted and displayed the data we pulled from the database 
 ```
 
 ## Insert Page:
-![INSERT](https://github.com/SadkDemr/QtSqLiteProject/blob/main/QtSqLiteProject/Screenshot/Screenshot%202022-07-28%20131816.png?raw=true)
+![INSERT](https://github.com/SadkDemr/QtSqLiteProject/blob/main/QtSqLiteProject/Screenshot/insert.png?raw=true)
 
 Data is added to the database on the page. The selected image appears on the screen. After adding, the database on the first page is automatically updated.
 
@@ -107,13 +107,13 @@ and extract the name with info.fileName above, the time with QTime and save the 
 ```
 ## Update Page:
 
-![Update](https://github.com/SadkDemr/QtSqLiteProject/blob/main/QtSqLiteProject/Screenshot/Screenshot%202022-07-28%20132111.png?raw=true)
+![Update](https://github.com/SadkDemr/QtSqLiteProject/blob/main/QtSqLiteProject/Screenshot/update.png?raw=true)
 
 On this page, editing and updating the data of the selected column is performed. The selected data is automatically included in the TextField. This makes the editing process easier. Although it does not appear in the image, there are delete, edit and close options in the menu that opens after clicking on the arm.
 
 ## Setting Page:
 
-![Update](https://github.com/SadkDemr/QtSqLiteProject/blob/main/QtSqLiteProject/Screenshot/Screenshot%202022-07-28%20131843.png?raw=true)
+![Update](https://github.com/SadkDemr/QtSqLiteProject/blob/main/QtSqLiteProject/Screenshot/setting.png?raw=true)
 
 This page is the most important page. Here, QSetting structure and QLinguist structures are used. Thanks to QSetting, variables such as the background image and font type take a place from the CPU independent of the application, and even if the application is closed, it opens as we saved it. Linguist, on the other hand, provides a translation without an online translation.
 
@@ -156,7 +156,7 @@ C:\Qt\5.15.2\msvc2019_64\bin\lrelease.exe QtSqLiteProject.pro
 
 ```
 
-![Linguist](https://github.com/SadkDemr/QtSqLiteProject/blob/main/QtSqLiteProject/Screenshot/Resim1.png?raw=true)
+![Linguist](https://github.com/SadkDemr/QtSqLiteProject/blob/main/QtSqLiteProject/Screenshot/linguist.png?raw=true)
 
 From here, we change the languages of the titles we set. By clicking on the folder cursor in the upper left, we must select the files with the .ts extension and manually change the title and text languages in them and save them.
 It updates the .qm files in our k project with the ~\bin\lrelease.exe command.
