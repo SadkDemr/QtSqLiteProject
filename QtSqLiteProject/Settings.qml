@@ -41,7 +41,7 @@ Item {
             id:colorChange
             width: 50
             height: 50
-            x:1000
+            x:1050
             y:400
             source: "qrc:/image/programming.png"
             MouseArea{
@@ -57,7 +57,6 @@ Item {
         Column {
             spacing: 20
             anchors.centerIn: parent          
-            RowLayout{
 
                 Button {
                     id: btn
@@ -89,7 +88,7 @@ Item {
                     }
 
                     }
-            }
+
 
 
 

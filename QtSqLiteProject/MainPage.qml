@@ -1,13 +1,14 @@
 import QtQuick 2.5
-//import QtQuick.Controls 1.4
-//import QtQuick.Controls 2.4
+import QtQuick.Controls 1.4
+import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.1 //RowLayout
 import QtQuick.Dialogs 1.2 //TableView
-//import QtQuick.Controls.Styles 1.3
-//import QtQuick.Controls.Private 1.0
+import QtQuick.Controls.Styles 1.3
+import QtQuick.Controls.Private 1.0
 import QtQuick.Controls 1.3
 import QtQuick.Controls 2.12
-//import QtQuick.Controls 2.3 as QQC2
+import QtQuick.Controls 2.3 as QQC2
+import QtLocation 5.15
 
 Item {
     property var vote
@@ -20,6 +21,7 @@ Item {
        height: parent.height
        color:mySettings.sampleColor
 
+
     }
 
 
@@ -28,11 +30,6 @@ Item {
         anchors.centerIn: parent
         width: 1800
         height: 800
-
-
-
-
-
 
         itemDelegate: Item {
 
@@ -44,6 +41,7 @@ Item {
                      font.pixelSize: 20
                    }
         }
+
 
 
 //Verileri siralama islemi
@@ -88,6 +86,7 @@ Item {
 
         }
         model: myModel
+
 //Gorselleri goruntuleme
 //View Image
         Component {
@@ -103,10 +102,89 @@ Item {
                         //cache : true;
                         asynchronous: true;
                         source: "file:///"+styleData.value// !== undefined  ? styleData.value : ""
+
+                        MouseArea{
+                            anchors.fill: parent
+                            onClicked: {
+                                tableView.selection.clear()
+                                tableView.selection.select(styleData.row)
+                                tableView.currentRow = styleData.row
+                                tableView.focus = true
+                                imageView.open();
+                                console.debug("View Image")
+                                console.debug(myModel.getImage(tableView.currentRow));
+                            }
+                        }
                     }
                 }
 
          }
+        Popup{
+            id:imageView
+            width: 600
+            height: 600
+
+
+            Rectangle {
+                id: rectangle
+                width: 568
+                height: 533
+                color: "#ffffff"
+
+                Image {
+                    id: imagePopup
+                    x: 100
+                    y: 43
+                    width: 253
+                    height: 225
+                    source:  "file:///" + myModel.getImage(tableView.currentRow);
+                    fillMode: Image.PreserveAspectFit
+                }
+
+                Text {
+                    id: titleImage
+                    x: 150
+                    y: 289
+                    width: 136
+                    height: 25
+                    text: myModel.getTitle(tableView.currentRow);
+                    font.pixelSize: 18
+                }
+
+                Text {
+                    id: dateTime
+                    x: 150
+                    y: 328
+                    width: 136
+                    height: 25
+                    text: myModel.getDate(tableView.currentRow);
+                    font.pixelSize: 18
+                }
+
+                Text {
+                    id: text3
+                    x: 150
+                    y: 368
+                    width: 136
+                    height: 25
+                    text: myModel.getTag(tableView.currentRow);
+                    font.pixelSize: 18
+                }
+
+                Button {
+                    id: button
+                    x: 423
+                    y: 479
+                    width: 137
+                    height: 46
+                    text: qsTr("Close")
+                    onClicked: {
+                        imageView.close();
+                    }
+                }
+            }
+        }
+
 
 
 
@@ -117,6 +195,8 @@ Item {
             color: styleData.selected ? 'skyblue' : (styleData.alternate ? 'whitesmoke' : 'white');
             height:50
             width: parent.width
+
+
             MouseArea {
                 anchors.fill: parent
                 acceptedButtons: Qt.RightButton | Qt.LeftButton
