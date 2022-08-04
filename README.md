@@ -210,6 +210,9 @@ If you have any feedback, please reach out to us at msadikdemir54321@gmail.com
 
 
 ## 🔗 Links
+<a href="https://www.youtube.com/channel/[YOUR CHANNEL ID]">
+ <img alt="youtube views" src="https://github-readme-youtube-stats.herokuapp.com/views/index.php?id=[YOUR CHANNEL ID]&key=[YOUR API KEY]"/>
+</a>
 
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/muhammed-sadık-demir-4138821b7/)
 
