@@ -5,6 +5,8 @@
 
 In my project, my goal is to display, sort, delete, update and insert a database containing int, string and image. And generating all of them in the Qt Creator environment.
 
+[![linkedin](https://similarpng.com/popular-logo-youtube-icon-png/)]: https://www.youtube.com/watch?v=rjcuzN4VHIg&t=39s
+
 ## Main:
 ![Main](https://github.com/SadkDemr/QtSqLiteProject/blob/main/QtSqLiteProject/Screenshot/main.png?raw=true)
 
@@ -210,9 +212,6 @@ If you have any feedback, please reach out to us at msadikdemir54321@gmail.com
 
 
 ## 🔗 Links
-<a href="https://www.youtube.com/channel/[YOUR CHANNEL ID]">
- <img alt="youtube views" src="https://github-readme-youtube-stats.herokuapp.com/views/index.php?id=[YOUR CHANNEL ID]&key=[YOUR API KEY]"/>
-</a>
 
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/muhammed-sadık-demir-4138821b7/)
 
