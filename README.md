@@ -5,7 +5,7 @@
 
 In my project, my goal is to display, sort, delete, update and insert a database containing int, string and image. And generating all of them in the Qt Creator environment.
 
-[![linkedin](https://commons.wikimedia.org/wiki/File:YouTube_dark_logo_(2017).svg)]: https://www.youtube.com/watch?v=rjcuzN4VHIg&t=39s
+[![YouTube](https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg)]: https://www.youtube.com/watch?v=rjcuzN4VHIg&t=39s
 
 ## Main:
 ![Main](https://github.com/SadkDemr/QtSqLiteProject/blob/main/QtSqLiteProject/Screenshot/main.png?raw=true)
